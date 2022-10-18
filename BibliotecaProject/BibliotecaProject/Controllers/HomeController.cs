@@ -19,13 +19,20 @@ namespace BibliotecaProject.Controllers
             return View();
         }
 
-        
+        public IActionResult DetailBook()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
             return View();
         }
+        public IActionResult CatalogoLibri()
+        {
+            return View();
 
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

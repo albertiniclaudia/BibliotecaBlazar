@@ -27,7 +27,18 @@ namespace BibliotecaProject.Controllers
         }
 
 
-        [HttpGet]
+        public IActionResult ListOfBooks()
+        {
+
+            var query = from b in bibliotecaDbContext.Books
+                        select b;
+
+
+            return View(query);
+
+        }
+
+     /* [HttpGet]
         public IActionResult ListOfBooks(string search, string typeOfBooks, string publishingHouse)
         {
 
@@ -100,7 +111,7 @@ namespace BibliotecaProject.Controllers
 
             return View(query);
 
-        }
+        } */
 
 
         [HttpPost]
