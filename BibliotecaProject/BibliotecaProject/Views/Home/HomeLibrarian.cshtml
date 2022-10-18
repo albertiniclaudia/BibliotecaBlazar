@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Home Amministratore";
+}
+@if(true)
+{
+    <div style="margin-left: 15%">
+        <div style="padding: 1%">
+            <h3>
+                Ciao Luca
+            </h3>
+        </div>
+        <div>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="Home" asp-action="Index"><span> Inserisci libro </span></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="Home" asp-action="Index"><span>  Registra utente  </span></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="Home" asp-action="Index"><span>  Acquista libro  </span></a>
+        </div>
+        <div>
+            <table class="table">
+                <thead>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Publishing House</th>
+                    <th>ISBN</th>
+                    <th>Utente Richiedente</th>
+                </thead>
+                <tr>
+                    <th scope="row">Divina Commedia</th>
+                    <th scope="row">Asdrubale</th>
+                    <th scope="row"></th>
+                    <th scope="row"></th>
+                    <th scope="row">Andrea Arturi</th>
+                </tr>
+                <tr>
+                    <th scope="row">Alice nel paese delle meraviglie</th>
+                    <th scope="row"></th>
+                    <th scope="row"></th>
+                    <th scope="row">1234556789123</th>
+                    <th scope="row">Michele Galimberti</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+}
+else
+{ }
+
+<style>
+    .b {
+        width: 25%;
+        padding: 3%;
+        margin: 1%;
+        text-align: center;
+        font-size: larger;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+    .b span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+    .b span:after {
+        content: '\00bb';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+        transition: 0.5s;
+    }
+    .b:hover span {
+        padding-right: 25px;
+    }
+    .b:hover span:after {
+        opacity: 1;
+        right: 0;
+    }
+</style>
