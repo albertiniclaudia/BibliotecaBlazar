@@ -26,6 +26,16 @@ namespace BibliotecaProject.Controllers
             return View();
         }
 
+        public IActionResult AddAdmin()
+        {
+            return View();
+        }
+
+        public IActionResult AddLibrarian()
+        {
+            return View();
+        }
+
 
         public IActionResult ListOfBooks()
         {

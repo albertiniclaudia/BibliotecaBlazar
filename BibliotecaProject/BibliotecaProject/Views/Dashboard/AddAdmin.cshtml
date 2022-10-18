@@ -1,6 +1,4 @@
-﻿@page
-@model InsertAdminModel
-@{
+﻿@{
     ViewData["Title"] = "Inserimento amministratore";
     var ruolo = "Amministratore";
 }
@@ -8,9 +6,14 @@
 {
     <div class="text-center">
         <form method="post">
-            <p>Email: <input asp-for="User.Email" name="email"></p>
-            <p>Password: <input asp-for="User.Password" name="password"/></p>
-            <input type="submit"/>
+            <div class="row">
+
+                <p>Email: <input type="email" name="Email" /></p>
+                <p>Password: <input type="password" name="Password" /></p>
+                
+                <input type="submit" />
+            </div>
+
         </form>
     </div>
 }
