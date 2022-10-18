@@ -1,0 +1,16 @@
+﻿@page
+@model InsertAdminModel
+@{
+    ViewData["Title"] = "Inserimento amministratore";
+    var ruolo = "Amministratore";
+}
+@if(ruolo == "Bibliotecario" || ruolo == "Amministratore")
+{
+    <div class="text-center">
+        <form method="post">
+            <p>Email: <input asp-for="User.Email" name="email"></p>
+            <p>Password: <input asp-for="User.Password" name="password"/></p>
+            <input type="submit"/>
+        </form>
+    </div>
+}
