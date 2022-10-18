@@ -8,8 +8,8 @@
 
   <ItemGroup>
     <None Remove="Controllers\NewFile.txt" />
-    <None Remove="Views\Bibliotecario\eddde" />
-    <None Remove="Views\Bibliotecario\NewFile.txt" />
+    <None Remove="Views\Librarian\eddde" />
+    <None Remove="Views\Librarian\NewFile.txt" />
     <None Remove="Views\Home\DetailBook" />
     <None Remove="Views\Home\NewFile.txt" />
   </ItemGroup>

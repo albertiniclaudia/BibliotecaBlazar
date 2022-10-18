@@ -30,10 +30,7 @@ namespace BibliotecaProject.Controllers
             return View();
         }
 
-        public IActionResult Contattaci()
-        {
-            return View();
-        }
+        
 
         public IActionResult Noi()
         {
@@ -44,21 +41,6 @@ namespace BibliotecaProject.Controllers
             return View();
 
         }
-		public IActionResult HomeLibrarian()
-		{
-			return View();
-
-		}
-		public IActionResult HomeUser()
-		{
-			return View();
-
-		}
-		public IActionResult HomeAdmin()
-		{
-			return View();
-
-		}
 
         public IActionResult DetailBook()
         {

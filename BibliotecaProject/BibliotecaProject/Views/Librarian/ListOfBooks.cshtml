@@ -49,7 +49,7 @@
         </div>
         
         <div class="col-2">
-            <a class="btn btn-success" asp-area="" asp-controller="Dashboard" asp-action="AddBooks">Nuovo Libro</a>
+            <a class="btn btn-success" asp-area="" asp-controller="Librarian" asp-action="AddBooks">Nuovo Libro</a>
         </div>
         
     </div> 
@@ -72,7 +72,7 @@
                 <th scope="row">@item.NumberOfCopy</th>
                 <th scope="row">@item.ISBN</th>
                 <th>
-                    <a class="btn  btn-warning" asp-controller="Dashboard" asp-action="EditBooks" asp-route-id=@item.Id_book>Edit</a>
+                    <a class="btn  btn-warning" asp-controller="Librarian" asp-action="EditBooks" asp-route-id=@item.Id_book>Edit</a>
                     @Html.ActionLink("Delete","DeleteBooks",new {id = @item.Id_book}, new { @class = "btn btn-danger"})
                 </th>
 
