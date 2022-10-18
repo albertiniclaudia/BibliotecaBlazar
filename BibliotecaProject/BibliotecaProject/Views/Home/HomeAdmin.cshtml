@@ -1,44 +1,45 @@
 ﻿@{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "Home Amministratore";
 }
 @if(true){
-    <div style="margin-left: 7.5%">
+    <div style="margin-left: 15%">
         <div style="padding: 1%">
             <h3>
                 Ciao Luca
             </h3>
         </div>
         <div>
-            <a asp-area="" asp-controller="Home" asp-action="Index"><button class="btn btn-outline-success" style="padding:3%"><span> Registra bibliotecario </span></button></a>
-            <a asp-area="" asp-controller="Home" asp-action="Index"><button class="btn btn-outline-success" style="padding:3%"><span>  Registra utente  </span></button></a>
-            <a asp-area="" asp-controller="Home" asp-action="Index"><button class="btn btn-outline-success" style="padding:3%"><span>  registra amministratore  </span></button></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="Home" asp-action="Index"><span> Registra bibliotecario </span></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="Home" asp-action="Index"><span>  Registra utente  </span></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="Home" asp-action="Index"><span>  registra amministratore  </span></a>
         </div>
         <div>
-            <a asp-area="" asp-controller="Home" asp-action="Index"><button class="btn btn-outline-success" style="padding:3%"><span>  Inserisci libro  </span></button></a>
-            <a asp-area="" asp-controller="Home" asp-action="Index"><button class="btn btn-outline-success" style="padding:3%"><span>  Acquista libro  </span></button></a>
-            <a asp-area="" asp-controller="Home" asp-action="Index"><button class="btn btn-outline-success" style="padding:3%"><span>  Modifica dati  </span></button></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="Home" asp-action="Index"><span>  Inserisci libro  </span></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="Home" asp-action="Index"><span>  Acquista libro  </span></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="Home" asp-action="Index"><span>  Modifica dati  </span></a>
         </div>
         <div>
-            <a asp-area="" asp-controller="Home" asp-action="Index"><button class="btn btn-outline-success" style="margin-left:33%; margin-top:2%; padding:3%"><span>  Visualizza richieste libri  </span></button></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="Home" asp-action="Index" style="margin-left:28.5%; margin-top:1%; padding:3%"><span>  Visualizza richieste libri  </span></a>
         </div>
     </div>
 } else {}
 
 <style>
-    button {
+    .b {
         width: 25%;
-        margin: 2.5%;
+        padding:3%;
+        margin: 1%;
         text-align: center;
-        font-size: 28px;
+        font-size: larger;
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     }
-    button span {
+    .b span {
             cursor: pointer;
             display: inline-block;
             position: relative;
             transition: 0.5s;
     }
-    button span:after {
+    .b span:after {
         content: '\00bb';
         position: absolute;
         opacity: 0;
@@ -46,10 +47,10 @@
         right: -20px;
         transition: 0.5s;
     }
-    button:hover span {
+    .b:hover span {
         padding-right: 25px;
     }
-    button:hover span:after {
+    .b:hover span:after {
             opacity: 1;
             right: 0;
     }
