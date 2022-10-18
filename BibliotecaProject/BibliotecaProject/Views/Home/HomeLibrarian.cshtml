@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home Amministratore";
+    ViewData["Title"] = "Home bibliotecario";
 }
 @if(true)
 {
@@ -10,9 +10,9 @@
             </h3>
         </div>
         <div>
-            <a class="btn btn-outline-success b" asp-area="" asp-controller="Home" asp-action="Index"><span> Inserisci libro </span></a>
-            <a class="btn btn-outline-success b" asp-area="" asp-controller="Home" asp-action="Index"><span>  Registra utente  </span></a>
-            <a class="btn btn-outline-success b" asp-area="" asp-controller="Home" asp-action="Index"><span>  Acquista libro  </span></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="Dashboard" asp-action="AddBooks"><span> Inserisci libro </span></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="Dashboard" asp-action="AddUser"><span>  Registra utente  </span></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="Bibliotecario" asp-action="Purchase"><span>  Acquista libro  </span></a>
         </div>
         <div>
             <table class="table">
