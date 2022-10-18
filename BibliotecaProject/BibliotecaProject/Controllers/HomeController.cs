@@ -19,12 +19,23 @@ namespace BibliotecaProject.Controllers
             return View();
         }
 
-        public IActionResult DetailBook()
+
+        public IActionResult Privacy()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Biblio()
+        {
+            return View();
+        }
+
+        public IActionResult Contattaci()
+        {
+            return View();
+        }
+
+        public IActionResult Noi()
         {
             return View();
         }
