@@ -7,7 +7,7 @@
         
         <div class="col-2">
             <label for="typeOfBooks">Type Of Books Filter</label>
-            <select class="btn btn-primary" form="merg" name="typeOfBooks">   
+            <select class="btn btn-primary" form="merg" name="typeOfBooks" id="typeOfBooks">   
                     <option value=" giallo">Giallo</option>
                     <option value="narrativa">Narrativa</option>
                     <option value="horror">Horror</option>
@@ -39,7 +39,7 @@
         </div>
         <div class="col-1"></div>
         <div class="col-3">
-            <input type="text" form="merg" class="form-control" value=@ViewBag.parameter name="search" placeholder="search..." aria-label="Search">
+            <input type="text"  class="form-control" name="search" id="search" placeholder="search..." aria-label="Search">
         </div>
         <div class="col-2">
         <form method="get" id="merg">
@@ -81,3 +81,71 @@
     </table>
 
 </div>
+
+
+@section Scripts{
+
+    <script>
+
+        $(document).ready(function () {
+
+            $("#search").keydown(function () {
+
+                var searchValue = $(this).val();
+
+                $("table tr").each(function(results) {
+
+                    if(results !== 0){
+
+                        var title = $(this).find("th:nth-child(1)").text();
+
+                        if(title.indexOf(searchValue) !== 0 && title.toLowerCase().indexOf(searchValue.toLowerCase()) < 0){
+
+                            $(this).hide();
+
+                        }else{
+
+                            $(this).show();
+                        }
+
+                    }
+
+                });
+
+            });
+        });
+
+         $(document).ready(function () {
+
+            $("#typeOfBooks").change(function () {
+
+                var typeOfBooksValue = $(this).val();
+
+                console.log(typeOfBooksValue);
+
+                $("table tr").each(function(results) {
+
+                    if(results !== 0){
+
+                        var typeOfBooks = $(this).find("th:nth-child(4)").text();
+
+                        if(typeOfBooks.indexOf(typeOfBooksValue) !== 0 && typeOfBooks.toLowerCase().indexOf(typeOfBooksValue.toLowerCase()) < 0){
+
+                            $(this).hide();
+
+                        }else{
+
+                            $(this).show();
+                        }
+
+                    }
+
+                });
+
+            });
+        });
+
+
+    </script>
+
+}
