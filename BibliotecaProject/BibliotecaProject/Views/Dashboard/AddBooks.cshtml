@@ -1,0 +1,51 @@
+﻿<div>
+    <h1>Aggiungi un nuovo libro !</h1>
+    <form method="post">
+        <div class="row">
+        <div class="mb-3 col-6">
+            <label for="Title" class="form-label">Title:</label>
+            <input type="text" class="form-control" name="Title"  placeholder="Inserisci il titolo">
+        </div>
+        <div class="mb-3 col-6">
+            <label for="Author" class="form-label">Author:</label>
+            <input class="form-control" name="Author" rows="3" />
+        </div>
+        </div>
+        <div class="row">
+        <div class="mb-3 col-12">
+            <label for="PublishingHouse" class="form-label">PublishingHouse:</label>
+            <input class="form-control" name="PublishingHouse" rows="3" />
+
+        </div>
+        </div>
+        <div class="row">
+        <div class="mb-3 col-6">
+            <label for="NumberOfCopy" class="form-label">NumberOfCopy:</label>
+            <input class="form-control" name="NumberOfCopy" type="number" rows="3" />
+
+        </div>
+        <div class="mb-3 col-6">
+                <label for="TypeOfBooks" class="form-label">TypeOfBooks:</label>
+                <select class="form-select" name="TypeOfBooks">
+            <option ></option>        
+            <option value="Narrativa">Narrativa</option>
+            <option value="Giallo">Gialli</option>
+            <option value="Horror">Horror</option>
+            <option>Avventura</option>
+            <option>Rosa</option>
+            </select>
+        </div>
+        </div>
+        <div class="mb-3">
+            <label for="Description" class="form-label">Description:</label>
+            <textarea style="resize:none;" class="form-control" name="Description" rows="3"></textarea>
+
+        </div>
+        <div class="mb-3">
+            <label for="ISBN" class="form-label">ISBN</label>
+            <input class="form-control" name="ISBN" rows="3" />
+
+        </div>
+        <button class="btn btn-success" type="submit">Aggiungi Libro</button>
+    </form>
+</div> 

@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Book>
+<div>
+    <div class="row mb-3">
+        <div class="col-12 mb-3">
+            <h1>I Libri all'interno della tua biblioteca</h1>
+        </div> 
+        
+        <div class="col-2">
+            <label for="typeOfBooks">Type Of Books Filter</label>
+            <select class="btn btn-primary" form="merg" name="typeOfBooks">   
+                    <option value=" giallo">Giallo</option>
+                    <option value="narrativa">Narrativa</option>
+                    <option value="horror">Horror</option>
+                    <option value="rosa">Rosa</option>
+                    <option value="avventura">Avventura</option>
+                @if (string.IsNullOrEmpty(@ViewBag.parameter1))
+                {
+                    <option value="" selected hidden>Seleziona</option>
+                }else {
+                     <option value=@ViewBag.parameter1 selected hidden>@ViewBag.parameter1</option>
+                     <option value="">Nessun Filtro</option>
+                }
+            </select>
+        </div>
+        <div class="col-2">
+                <label for="publishingHouse"> Publishing House </label>
+                <select class="btn btn-primary" form="merg" name="publishingHouse">
+                <option value="mondatori">Mondatori</option>
+                <option value="Universal">Universal</option>
+                @if (string.IsNullOrEmpty(@ViewBag.parameter2))
+                {
+                   <option value="" selected hidden>Seleziona</option>
+                }else {
+                     <option value=@ViewBag.parameter2 selected hidden>@ViewBag.parameter2</option>
+                     <option value="">Nessun Filtro</option>
+                }
+                
+                </select>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-3">
+            <input type="text" form="merg" class="form-control" value=@ViewBag.parameter name="search" placeholder="search..." aria-label="Search">
+        </div>
+        <div class="col-2">
+        <form method="get" id="merg">
+            <input class="btn btn-success" type="submit" value="Cerca"/>
+        </form>
+        
+        </div>
+        
+        <div class="col-2">
+            <a class="btn btn-success" asp-area="" asp-controller="Dashboard" asp-action="AddBooks">Nuovo Libro</a>
+        </div>
+        
+    </div> 
+    <table class="table">
+        <thead>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publishing House</th>
+            <th>Type Of Book</th>
+            <th>Number Of Copy</th>
+            <th>ISBN</th>
+            <th class="span-2">Editing of Books</th>
+        </thead>
+        @foreach (var item in Model){
+            <tr>
+                <th scope="row">@item.Title</th>
+                <th scope="row">@item.Author</th>
+                <th scope="row">@item.PublishingHouse</th>
+                <th scope="row">@item.TypeOfBooks</th>
+                <th scope="row">@item.NumberOfCopy</th>
+                <th scope="row">@item.ISBN</th>
+                <th>
+                    <a class="btn  btn-warning" asp-controller="Dashboard" asp-action="EditBooks" asp-route-id=@item.Id_book>Edit</a>
+                    @Html.ActionLink("Delete","DeleteBooks",new {id = @item.Id_book}, new { @class = "btn btn-danger"})
+                </th>
+
+            </tr>
+        }
+    </table>
+
+</div>

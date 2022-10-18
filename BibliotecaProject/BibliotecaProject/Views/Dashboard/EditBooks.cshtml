@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Book>
+
+@foreach(var item in Model){
+<form method="post">
+    <div class="row">
+        <div class="mb-3 col-6">
+            <label for="Title" class="form-label">Title:</label>
+            <input type="text" class="form-control" name="Title" value=@item.Title placeholder="Inserisci il titolo">
+        </div>
+        <div class="mb-3 col-6">
+            <label for="Author" class="form-label">Author:</label>
+                <input class="form-control" name="Author" value=@item.Author rows="3" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="mb-3 col-12">
+            <label for="PublishingHouse" class="form-label">PublishingHouse:</label>
+                <input class="form-control" name="PublishingHouse" value=@item.PublishingHouse rows="3" />
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="mb-3 col-6">
+            <label for="NumberOfCopy" class="form-label">NumberOfCopy:</label>
+                <input class="form-control" name="NumberOfCopy" value=@item.NumberOfCopy type="number" rows="3" />
+
+        </div>
+        <div class="mb-3 col-6">
+            <label for="TypeOfBooks" class="form-label">TypeOfBooks:</label>
+                <select class="form-select" name="TypeOfBooks">
+                    <option value=@item.TypeOfBooks selected hidden>@item.TypeOfBooks</option>
+                    <option value="narrativa">Narrativa</option>
+                    <option value="giallo">Giallo</option>
+                    <option value="horror">Horror</option>
+                    <option value="avventura">Avventura</option>
+                    <option value="rosa">Rosa</option>
+            </select>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="Description" class="form-label">Description:</label>
+            <textarea style="resize:none;" class="form-control" name="Description" rows="3">@item.Description</textarea>
+
+    </div>
+    <div class="mb-3">
+        <label for="ISBN" class="form-label">ISBN</label>
+            <input class="form-control" value=@item.ISBN name="ISBN" rows="3" />
+
+    </div>
+    <button class="btn btn-success"  type="submit">Salva modifiche</button>
+</form>
+}
