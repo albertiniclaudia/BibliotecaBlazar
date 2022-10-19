@@ -1,27 +1,33 @@
-﻿@{
-    ViewData["Title"] = "Home Amministratore";
-}
-@if(true)
-{
-    <div style="margin-left: 30%">
-        <div style="padding: 1%">
-            <h3>
-                Ciao Luca
-            </h3>
-        </div>
-        <div>
-            <a class="btn btn-outline-success b" asp-area="" asp-controller="User" asp-action="UserProfile"><span> Il mio profilo </span></a>
-            <a class="btn btn-outline-success b" asp-area="" asp-controller="User" asp-action="UserProfile"><span>  I miei ordini  </span></a>
-        </div>
-        <div>
-            <a class="btn btn-outline-success b" asp-area="" asp-controller="Home" asp-action="Index"><span>  Richiedi libro  </span></a>
-            <a class="btn btn-outline-success b" asp-area="" asp-controller="User" asp-action="Contattaci"><span>  Contattaci  </span></a>
-        </div>
+﻿@page
+@using Microsoft.AspNetCore.Http
+@{
+    ViewBag.Title = "Home";
+    if(true)
+    {
+    <div style="margin-left: 15%">
+                <div style="padding: 1%">
+                        <h3>
+                            Ciao Luca
+                        </h3>
+                    </div>
+                    <div>
+                        <a class="btn btn-outline-success b" asp-area="" asp-controller="User" asp-action="UserProfile"><span> Il mio profilo </span></a>
+                        <a class="btn btn-outline-success b" asp-area="" asp-controller="User" asp-action=""><span>  I miei ordini  </span></a>
+                        <a class="btn btn-outline-success b" asp-area="" asp-controller="User" asp-action="RequestBook"><span>  Richiedi Acquisto libro  </span></a>
+                    </div>
     </div>
+    }
+    else if(false)
+    {
+        Redirect("../Admin/HomeAdmin");
+    }
+    else if(false)
+    {
+        Redirect("../Bibliotecario/HomeLibrarian");
+    } else {
+        Redirect("../Home/Index");
+    }
 }
-else
-{ }
-
 <style>
     .b {
         width: 25%;

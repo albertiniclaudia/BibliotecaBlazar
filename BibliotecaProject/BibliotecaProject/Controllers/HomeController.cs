@@ -1,22 +1,28 @@
 ﻿using BibliotecaProject.Database;
 using BibliotecaProject.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
+using NuGet.Versioning;
+//using System.Diagnostics;
 
 namespace BibliotecaProject.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+		public readonly BibliotecaDbContext bibliotecaDbContext;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+		public HomeController(BibliotecaDbContext bibliotecaDbContext)
+		{
 
-        public IActionResult Index()
+			this.bibliotecaDbContext = bibliotecaDbContext;
+
+		}
+
+		public IActionResult Index()
         {
-            return View();
+			return View();
         }
 
 
@@ -30,30 +36,45 @@ namespace BibliotecaProject.Controllers
             return View();
         }
 
-        
-
         public IActionResult Noi()
         {
             return View();
         }
-        public IActionResult CatalogoLibri()
-        {
-            return View();
-
-        }
+		public IActionResult CatalogoLibri()
+		{
+			return View();
+		}
 
         public IActionResult DetailBook()
         {
             return View();
+        }
+
+		[HttpPost]
+		public IActionResult Index(string email, string password)
+		{/*
+			var user = bibliotecaDbContext.Users.Where(u => u.Email == email && u.Password == password);
+			if(user.FirstOrDefault() != null)
+			{
+				if(user.FirstOrDefault().Role == "Admin")
+				{
+					return View("../Admin/HomeAdmin");
+				}
+				else if(user.FirstOrDefault().Role == "Librarian")
+				{
+					return View("../Bibliotecario/HomeLibrarian");
+				}
+				else
+				{
+					return View("../User/HomeUser");
+				}
+            return View();
 
         }
 
-
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+			}*/
+			return View("../User/HomeUser");
+			//return View("Index");
+		}
     }
 }

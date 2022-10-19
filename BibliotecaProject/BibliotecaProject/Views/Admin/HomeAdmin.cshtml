@@ -1,11 +1,13 @@
-﻿@{
-    ViewData["Title"] = "Home amministratore";
-}
-@if(true){
+﻿@page
+@{
+    ViewBag.Title = "Home";
+    var c = "Admin"/*HttpContext.Session.GetString("role")*/;
+    if(c == "Admin")
+    {
     <div style="margin-left: 15%">
         <div style="padding: 1%">
             <h3>
-                Ciao Luca
+                Ciao @{/*HttpContext.Session.GetString("nome")*/}
             </h3>
         </div>
         <div>
@@ -19,8 +21,18 @@
             <a class="btn btn-outline-success b" asp-area="" asp-controller="Home" asp-action="Index"><span>  Modifica dati  </span></a>
         </div>
     </div>
-} else {}
-
+    }
+    else if(c == "User")
+    {
+        Redirect("../User/HomeUser");
+    } else if(c == "Librarian")
+    {
+        Redirect("../Bibliotecario/HomeLibrarian");
+    } else
+    {
+        Redirect("../Home/Index");
+    }
+}
 <style>
     .b {
         width: 25%;

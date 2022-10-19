@@ -1,33 +1,56 @@
 ﻿using BibliotecaProject.Database;
+using BibliotecaProject.Models;
+using BibliotecaProject.Database;
 using Microsoft.AspNetCore.Mvc;
 using BibliotecaProject.Models;
 
 namespace BibliotecaProject.Controllers
 {
-
     public class UserController : Controller
     {
-        public readonly BibliotecaDbContext bibliotecaDbContext;
-
-        public UserController(BibliotecaDbContext bibliotecaDbContext)
-        {
-
-            this.bibliotecaDbContext = bibliotecaDbContext;
-
-        }
-
-        public IActionResult UserProfile()
+		private readonly ILogger<UserController> _logger;
+		public readonly BibliotecaDbContext bibliotecaDbContext;
+		public UserController(BibliotecaDbContext bibliotecaDbContext)
+		{
+			this.bibliotecaDbContext = bibliotecaDbContext;
+		}
+		public IActionResult UserProfile()
         {
             return View();
         }
-        public IActionResult Contattaci()
-        {
-            return View();
-        }
-        public IActionResult HomeUser()
-        {
-            return View();
+		public IActionResult Contattaci()
+		{
+			return View();
+		}
+		public IActionResult HomeUser()
+		{
 
+			return View();
+		}
+		public IActionResult RequestBook()
+		{
+			return View();
+		}
+		public IActionResult RecuperoPassword()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public IActionResult RequestBook(string Title, string Author, string PublishingHouse, string ISBN)
+		{
+			var query = bibliotecaDbContext.Users.Where(u => u.Email == ""/*email dalla sessione*/);
+			PurchaseQueue pq = new PurchaseQueue
+			{
+				Title = Title,
+				Author = Author,
+				PublishingHouse = PublishingHouse,
+				ISBN = ISBN,
+				ID_user = query.FirstOrDefault().Id
+			};
+			bibliotecaDbContext.Add(pq);
+			bibliotecaDbContext.SaveChanges();
+			return View(pq);
         }
         public IActionResult dashboardUser()
         {

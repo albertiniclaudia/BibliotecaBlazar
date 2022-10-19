@@ -1,12 +1,13 @@
-﻿@{
-    ViewData["Title"] = "Home bibliotecario";
-}
-@if(true)
-{
+﻿@page
+@{
+    ViewBag.Title = "Home";
+    var c = "Librarian"/*HttpContext.Session.GetString("role")*/;
+    if(c == "Librarian")
+    {
     <div style="margin-left: 15%">
         <div style="padding: 1%">
             <h3>
-                Ciao Luca
+                Ciao @{/*HttpContext.Session.GetString("nome")*/}
             </h3>
         </div>
         <div>
@@ -40,9 +41,17 @@
             </table>
         </div>
     </div>
+    } else if(c == "Admin")
+    {
+        Redirect("../Admin/HomeAdmin");
+    } else if(c == "User")
+    {
+        Redirect("../User/HomeUser");
+    } else
+    {
+        Redirect("../Home/Index");
+    }
 }
-else
-{ }
 
 <style>
     .b {
