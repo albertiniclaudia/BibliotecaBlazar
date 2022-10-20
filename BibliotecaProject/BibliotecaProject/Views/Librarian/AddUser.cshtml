@@ -3,9 +3,9 @@
     var ruolo = "Amministratore";
 }
 @if(ruolo == "Bibliotecario" || ruolo == "Amministratore"){
-    <div class="text-center mx-auto bg-success p-2 text-dark bg-opacity-50 " style="width: 50%; height: 50%;">
-        <div class="card text-center border border-success p-2 mb-2 border-opacity-25 ">
-            <div class="card-header bg-success p-2 text-dark bg-opacity-25 ">
+    <div class=" mx-auto bg-success p-2 text-dark bg-opacity-25 " style="width: 50%; height: 50%;">
+        <div>
+            <div class="mx-auto bg-success p-2 text-dark bg-opacity-50">
                 <h2>Inserisci i dati per la registrazione di un nuovo utente</h2>
             </div>
             <div class="input-group input-group-sm mb-3">
@@ -30,7 +30,7 @@
                 <span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
                 <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
             </div>
-            <div class="form-check">
+            <div class="form-check justify-content-end" >
                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                 <label class="form-check-label" for="defaultCheck1">
                     Minorenne
@@ -46,7 +46,7 @@
                 </select>
             </div>
             <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Emissionario</span>
+                <span class="input-group-text" id="inputGroup-sizing-sm">Emittente</span>
                 <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                 <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Data di scadenza</span>
