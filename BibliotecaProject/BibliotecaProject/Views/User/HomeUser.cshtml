@@ -6,7 +6,7 @@
     string role = Http.HttpContext.Session.GetString("role");
     if(role == "User")
     {
-    <div style="margin-left: 15%">
+    <div style="margin-left: 23%">
         <div style="padding: 1%">
             <h3>
                 Ciao @Http.HttpContext.Session.GetString("name")
@@ -14,7 +14,6 @@
         </div>
         <div>
             <a class="btn btn-outline-success b" asp-area="" asp-controller="User" asp-action="UserProfile"><span> Il mio profilo </span></a>
-            <a class="btn btn-outline-success b" asp-area="" asp-controller="User" asp-action=""><span>  I miei ordini  </span></a>
             <a class="btn btn-outline-success b" asp-area="" asp-controller="User" asp-action="RequestBook"><span>  Richiedi Acquisto libro  </span></a>
         </div>
         </div>
@@ -31,7 +30,7 @@
 }
 <style>
     .b {
-        width: 25%;
+        width: 33%;
         padding: 3%;
         margin: 1%;
         text-align: center;

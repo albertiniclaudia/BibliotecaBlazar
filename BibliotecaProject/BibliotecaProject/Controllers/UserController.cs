@@ -18,7 +18,13 @@ namespace BibliotecaProject.Controllers
 		}
 		public IActionResult UserProfile()
         {
-            return View();
+			UserModel model = new UserModel();
+			model.user = bibliotecaDbContext.Users.Where(u => u.Email == _http.HttpContext.Session.GetString("email")).FirstOrDefault();
+			model.getLoanData = (from l in bibliotecaDbContext.Loan
+								 from u in bibliotecaDbContext.Users
+								 where l.ID_user == u.Id
+								 select l).ToList();
+			return View(model);
         }
 		public IActionResult Contattaci()
 		{
@@ -26,7 +32,6 @@ namespace BibliotecaProject.Controllers
 		}
 		public IActionResult HomeUser()
 		{
-
 			return View();
 		}
 		public IActionResult RequestBook()
