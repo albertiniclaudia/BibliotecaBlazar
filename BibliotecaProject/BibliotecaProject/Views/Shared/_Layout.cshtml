@@ -15,44 +15,42 @@
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>*@
 </head>
-<body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand mx-auto text-center" asp-area="" asp-controller="Home" asp-action="Index">Biblioteca</a>
+                <a class="navbar-brand mx-auto text-center" asp-controller="Home" asp-action="Index">Biblioteca</a>
             </div>
             <div class="justify-content-end">
-                <button class="btn btn-outline-success me-2"> <a class="btn btn-success stretched-link" asp-area="" asp-controller="Home" asp-action="CatalogoLibri"> Catalogo Libri </a> </button>
+                <a class="btn btn-outline-success me-2" asp-area="" asp-controller="Home" asp-action="CatalogoLibri"> Catalogo Libri </a>
             </div>
         </nav>
     </header>
 
-
+    <body>
     <main role="main">
             @RenderBody()
     </main>
-    
+    </body>
 
     <footer>
         <nav class="navbar bg-light">
             <div class="container-fluid justify-content-center">
-                <button class="btn btn-outline-success me-2"> <a class="btn btn-success stretched-link" asp-area="" asp-controller="Home" asp-action="Index"> Home Page </a> </button>
+                <a class="btn btn-outline-success me-2" asp-area="" asp-controller="Home" asp-action="Index"> Home Page </a>
 
-                <button class="btn btn-outline-success me-2"> <a class="btn btn-success stretched-link" asp-area="" asp-controller="Home" asp-action="Privacy"> Privacy </a> </button>
+                <a class="btn btn-outline-success me-2" asp-area="" asp-controller="Home" asp-action="Privacy"> Privacy </a>
 
-                <button class="btn btn-outline-success me-2"> <a class="btn btn-success stretched-link" asp-area="" asp-controller="Home" asp-action="Biblio"> La nostra Biblioteca </a> </button>
+                <a class="btn btn-outline-success me-2" asp-area="" asp-controller="Home" asp-action="Biblio"> La nostra Biblioteca </a>
 
-                <button class="btn btn-outline-success me-2"> <a class="btn btn-success stretched-link" asp-area="" asp-controller="Home" asp-action="Noi"> Bibliotecari </a> </button>
+                <a class="btn btn-outline-success me-2" asp-area="" asp-controller="Home" asp-action="Noi"> Bibliotecari </a>
 
-                <button class="btn btn-outline-success me-2"> <a class="btn btn-success stretched-link" asp-area="" asp-controller="User" asp-action="Contattaci"> Contattaci </a> </button>
+                 <a class="btn btn-outline-success me-2" asp-area="" asp-controller="User" asp-action="Contattaci"> Contattaci </a>
             </div>
             <p>&copy; 2022 - Biblioteca, Blazar_Project</p>
         </nav>
     </footer>
-    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+@*<script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>*@
     @await RenderSectionAsync("Scripts", required: false)
-</body>
 </html>
