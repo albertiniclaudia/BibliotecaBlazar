@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Richiesta acquisto libro";
+    <div style="margin-left:10%; margin-right:10%">
+        <h2>Richiesta di acquisto di un libro: </h2><br>
+        <form method="post">
+            <div class="row">
+                <div class="mb-3 col-6">
+                    <label for="Title" class="form-label">Title:</label>
+                    <input type="text" class="form-control" name="Title" placeholder="Inserisci il titolo" required/>
+                </div>
+                <div class="mb-3 col-6">
+                    <label for="Author" class="form-label">Author:</label>
+                    <input class="form-control" name="Author" rows="3"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3 col-12">
+                    <label for="PublishingHouse" class="form-label">PublishingHouse:</label>
+                    <input class="form-control" name="PublishingHouse" rows="3" />
+
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="ISBN" class="form-label">ISBN</label>
+                <input class="form-control" name="ISBN" rows="3" />
+            </div>
+            <button class="btn btn-success" type="submit">Invia richiesta</button>
+        </form>
+    </div>
+}

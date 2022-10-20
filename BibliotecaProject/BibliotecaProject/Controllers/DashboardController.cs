@@ -11,18 +11,33 @@ namespace BibliotecaProject.Controllers
 {
     public class DashboardController : Controller
     {
-        
-
-
-        
-        public readonly BibliotecaDbContext bibliotecaDbContext;
+                public readonly BibliotecaDbContext bibliotecaDbContext;
 
         public DashboardController(BibliotecaDbContext bibliotecaDbContext)
         {
-
             this.bibliotecaDbContext = bibliotecaDbContext;
-
         }
+
+		public IActionResult HomeUser()
+		{
+			return View();
+
+		}
+		public IActionResult AddAdmin()
+        {
+            return View();
+        }
+
+        public IActionResult AddLibrarian()
+        {
+            return View();
+        }
+
+
+        public IActionResult ListOfBooks()
+        {
+			return View();
+		}
 
      /* [HttpGet]
         public IActionResult ListOfBooks(string search, string typeOfBooks, string publishingHouse)

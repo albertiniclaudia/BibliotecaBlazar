@@ -1,30 +1,36 @@
-﻿@{
-    ViewData["Title"] = "Home Amministratore";
-}
-@if(true)
-{
-    <div style="margin-left: 30%">
+﻿@page
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Http
+@{
+    ViewBag.Title = "Home User";
+    string role = Http.HttpContext.Session.GetString("role");
+    if(role == "User")
+    {
+    <div style="margin-left: 23%">
         <div style="padding: 1%">
             <h3>
-                Ciao Luca
+                Ciao @Http.HttpContext.Session.GetString("name")
             </h3>
         </div>
         <div>
             <a class="btn btn-outline-success b" asp-area="" asp-controller="User" asp-action="UserProfile"><span> Il mio profilo </span></a>
-            <a class="btn btn-outline-success b" asp-area="" asp-controller="User" asp-action="UserProfile"><span>  I miei ordini  </span></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="User" asp-action="RequestBook"><span>  Richiedi Acquisto libro  </span></a>
         </div>
-        <div>
-            <a class="btn btn-outline-success b" asp-area="" asp-controller="Home" asp-action="Index"><span>  Richiedi libro  </span></a>
-            <a class="btn btn-outline-success b" asp-area="" asp-controller="User" asp-action="Contattaci"><span>  Contattaci  </span></a>
         </div>
-    </div>
+    }else if(role == "Admin")
+    {
+        Http.HttpContext.Response.Redirect("../Admin/HomeAdmin");
+    } else if(role == "Librarian")
+    {
+        Http.HttpContext.Response.Redirect("../Librarian/HomeLibrarian");
+    } else 
+    {
+        Http.HttpContext.Response.Redirect("../Home/Index");
+    }
 }
-else
-{ }
-
 <style>
     .b {
-        width: 25%;
+        width: 33%;
         padding: 3%;
         margin: 1%;
         text-align: center;
