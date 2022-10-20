@@ -1,59 +1,49 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta char../Image/"utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BibliotecaProject</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/BibliotecaProject.styles.css" asp-append-version="true" />
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @*<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>*@
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand mx-auto text-center" asp-area="" asp-controller="Home" asp-action="Index">Biblioteca</a>
-            </div>
-            <div class="justify-content-end">
-                <button class="btn btn-outline-success me-2"> <a class="btn btn-success stretched-link" asp-area="" asp-controller="Home" asp-action="CatalogoLibri"> Catalogo Libri </a> </button>
-            </div>
-           
-        </nav>
-    </header>
-
-
-    <main role="main">
-            @RenderBody()
-    </main>
-    
-
-    <footer>
-     @*   <nav class="navbar bg-light">
-            <div class="container-fluid justify-content-center">
-                <button class="btn btn-outline-success me-2"> <a class="btn btn-success stretched-link" asp-area="" asp-controller="Home" asp-action="Index"> Home Page </a> </button>
-
-                <button class="btn btn-outline-success me-2"> <a class="btn btn-success stretched-link" asp-area="" asp-controller="Home" asp-action="Privacy"> Privacy </a> </button>
-
-                <button class="btn btn-outline-success me-2"> <a class="btn btn-success stretched-link" asp-area="" asp-controller="Home" asp-action="Biblio"> La nostra Biblioteca </a> </button>
-
-                <button class="btn btn-outline-success me-2"> <a class="btn btn-success stretched-link" asp-area="" asp-controller="Home" asp-action="Noi"> Bibliotecari </a> </button>
-
-                <button class="btn btn-outline-success me-2"> <a class="btn btn-success stretched-link" asp-area="" asp-controller="Home" asp-action="Contattaci"> Contattaci </a> </button>
-            </div>
-            <p>&copy; 2022 - Biblioteca, Blazar_Project</p>
-        </nav> *@
-    </footer>
-    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>*@
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
+    <head>
+        <meta char../Image/"utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - BibliotecaProject</title>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/BibliotecaProject.styles.css" asp-append-version="true" />
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @*<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>*@
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
+                <div style="margin-left:1%">
+                    <a class="btn btn-success" asp-area="" asp-controller="User" asp-action="HomeUser"> Home Page </a>
+                </div>
+                <div style="margin-left:40%">
+                    <label> Biblioteca </label>
+                </div>
+                <div style="margin-left:39%">
+                    <a class="btn btn-success" asp-area="" asp-controller="Home" asp-action="CatalogoLibri"> Catalogo Libri </a>
+                </div>
+            </nav>
+        </header>
+        <main role="main">
+                @RenderBody()
+        </main>
+    <footer class="border-top footer text-muted text-center">
+            <div>
+            <a class="btn btn-success opacity-50" style="margin:0.5%" asp-area="" asp-controller="Home" asp-action="Privacy"> Privacy </a>
+            <a class="btn btn-success opacity-50" style="margin:0.5%" asp-area="" asp-controller="Home" asp-action="Biblio"> La nostra Biblioteca </a>
+            <a class="btn btn-success opacity-50" style="margin:0.5%" asp-area="" asp-controller="Home" asp-action="Noi"> Bibliotecari </a>
+            <a class="btn btn-success opacity-50" style="margin:0.5%" asp-area="" asp-controller="User" asp-action="Contattaci"> Contattaci </a>
+             </div>
+        </footer>
+        @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>*@
+        @await RenderSectionAsync("Scripts", required: false)
+    </body>
 </html>

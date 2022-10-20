@@ -8,5 +8,10 @@ namespace BibliotecaProject.Controllers
         {
             return View();
         }
-    }
+		public IActionResult HomeUser()
+		{
+			return View();
+
+		}
+	}
 }

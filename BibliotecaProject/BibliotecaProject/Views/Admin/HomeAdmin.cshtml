@@ -1,0 +1,66 @@
+﻿@page
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Http
+@{
+    ViewBag.Title = "Home";
+    string role = Http.HttpContext.Session.GetString("role");
+    if(role == "Admin")
+    {
+    <div style="margin-left: 15%">
+        <div style="padding: 1%">
+            <h3>
+                    Ciao @Http.HttpContext.Session.GetString("role")
+            </h3>
+        </div>
+        <div>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="Admin" asp-action="AddLibrarian"><span> Registra bibliotecario </span></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="Librarian" asp-action="AddUser"><span>  Registra utente  </span></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="Admin" asp-action="AddAdmin"><span>  Registra amministratore  </span></a>
+        </div>
+        <div>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="Librarian" asp-action="AddBooks"><span>  Inserisci libro  </span></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="Librarian" asp-action="Purchase"><span>  Visualizza richieste libri  </span></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="Home" asp-action="Index"><span>  Modifica dati  </span></a>
+        </div>
+        </div>
+    } else if (role == "User")
+    {
+        Http.HttpContext.Response.Redirect("../User/HomeUser");
+    } else if(role == "Librarian")
+    {
+        Http.HttpContext.Response.Redirect("../Librarian/HomeLibrarian");
+    } else {
+        Http.HttpContext.Response.Redirect("../Home/Index");
+    }
+}
+<style>
+    .b {
+        width: 25%;
+        padding:3%;
+        margin: 1%;
+        text-align: center;
+        font-size: larger;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+    .b span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+    }
+    .b span:after {
+        content: '\00bb';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+        transition: 0.5s;
+    }
+    .b:hover span {
+        padding-right: 25px;
+    }
+    .b:hover span:after {
+            opacity: 1;
+            right: 0;
+    }
+</style>

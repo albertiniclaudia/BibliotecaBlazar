@@ -1,0 +1,62 @@
+﻿@page
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Http
+@{
+    ViewBag.Title = "Home User";
+    string role = Http.HttpContext.Session.GetString("role");
+    if(role == "User")
+    {
+    <div style="margin-left: 15%">
+        <div style="padding: 1%">
+            <h3>
+                Ciao @Http.HttpContext.Session.GetString("name")
+            </h3>
+        </div>
+        <div>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="User" asp-action="UserProfile"><span> Il mio profilo </span></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="User" asp-action=""><span>  I miei ordini  </span></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="User" asp-action="RequestBook"><span>  Richiedi Acquisto libro  </span></a>
+        </div>
+        </div>
+    }else if(role == "Admin")
+    {
+        Http.HttpContext.Response.Redirect("../Admin/HomeAdmin");
+    } else if(role == "Librarian")
+    {
+        Http.HttpContext.Response.Redirect("../Librarian/HomeLibrarian");
+    } else 
+    {
+        Http.HttpContext.Response.Redirect("../Home/Index");
+    }
+}
+<style>
+    .b {
+        width: 25%;
+        padding: 3%;
+        margin: 1%;
+        text-align: center;
+        font-size: larger;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+    .b span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+    }
+    .b span:after {
+        content: '\00bb';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+        transition: 0.5s;
+    }
+    .b:hover span {
+        padding-right: 25px;
+    }
+    .b:hover span:after {
+        opacity: 1;
+        right: 0;
+    }
+</style>

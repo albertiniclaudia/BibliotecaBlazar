@@ -1,18 +1,21 @@
-﻿@{
-    ViewData["Title"] = "Home bibliotecario";
-}
-@if(true)
-{
+﻿@page
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Http
+@{
+    ViewBag.Title = "Home";
+    string role = Http.HttpContext.Session.GetString("role");
+    if(role == "Librarian")
+    {
     <div style="margin-left: 15%">
         <div style="padding: 1%">
             <h3>
-                Ciao Luca
+                    Ciao @Http.HttpContext.Session.GetString("role")
             </h3>
         </div>
         <div>
-            <a class="btn btn-outline-success b" asp-area="" asp-controller="Dashboard" asp-action="AddBooks"><span> Inserisci libro </span></a>
-            <a class="btn btn-outline-success b" asp-area="" asp-controller="Dashboard" asp-action="AddUser"><span>  Registra utente  </span></a>
-            <a class="btn btn-outline-success b" asp-area="" asp-controller="Bibliotecario" asp-action="Purchase"><span>  Acquista libro  </span></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="Librarian" asp-action="AddBooks"><span> Inserisci libro </span></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="Librarian" asp-action="AddUser"><span>  Registra utente  </span></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="Librarian" asp-action="Purchase"><span>  Acquista libro  </span></a>
         </div>
         <div>
             <table class="table">
@@ -40,9 +43,17 @@
             </table>
         </div>
     </div>
+    } else if(role == "Admin")
+    {
+         Http.HttpContext.Response.Redirect("../Admin/HomeAdmin");
+    } else if(role== "User")
+    {
+        Http.HttpContext.Response.Redirect("../User/HomeUser");
+    } else
+    {
+        Http.HttpContext.Response.Redirect("../Home/Index");
+    }
 }
-else
-{ }
 
 <style>
     .b {
