@@ -1,13 +1,15 @@
 ﻿@page
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Http
 @{
     ViewBag.Title = "Home";
-    var c = "Admin"/*HttpContext.Session.GetString("role")*/;
-    if(c == "Admin")
+    string role = Http.HttpContext.Session.GetString("role");
+    if(role == "Admin")
     {
     <div style="margin-left: 15%">
         <div style="padding: 1%">
             <h3>
-                Ciao @{/*HttpContext.Session.GetString("nome")*/}
+                    Ciao @Http.HttpContext.Session.GetString("role")
             </h3>
         </div>
         <div>
@@ -20,17 +22,15 @@
             <a class="btn btn-outline-success b" asp-area="" asp-controller="Librarian" asp-action="Purchase"><span>  Visualizza richieste libri  </span></a>
             <a class="btn btn-outline-success b" asp-area="" asp-controller="Home" asp-action="Index"><span>  Modifica dati  </span></a>
         </div>
-    </div>
-    }
-    else if(c == "User")
+        </div>
+    } else if (role == "User")
     {
-        Redirect("../User/HomeUser");
-    } else if(c == "Librarian")
+        Http.HttpContext.Response.Redirect("../User/HomeUser");
+    } else if(role == "Librarian")
     {
-        Redirect("../Bibliotecario/HomeLibrarian");
-    } else
-    {
-        Redirect("../Home/Index");
+        Http.HttpContext.Response.Redirect("../Librarian/HomeLibrarian");
+    } else {
+        Http.HttpContext.Response.Redirect("../Home/Index");
     }
 }
 <style>

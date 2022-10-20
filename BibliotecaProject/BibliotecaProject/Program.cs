@@ -13,11 +13,9 @@ builder.Services.AddDbContext<BibliotecaDbContext>(options => options.UseSqlServ
 
 ));
 builder.Services.AddDistributedMemoryCache();
-
-builder.Services.AddSession(options =>
-{
-	options.IdleTimeout = TimeSpan.FromMinutes(10);
-});
+//ConfigureServices
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSession(s => s.IdleTimeout = TimeSpan.FromMinutes(30));
 
 var app = builder.Build();
 
@@ -28,12 +26,11 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
+app.UseCookiePolicy();
 app.UseSession();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-
 app.UseAuthorization();
 
 app.MapControllerRoute(

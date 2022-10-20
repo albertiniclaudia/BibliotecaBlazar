@@ -3,6 +3,7 @@ using BibliotecaProject.Models;
 using BibliotecaProject.Database;
 using Microsoft.AspNetCore.Mvc;
 using BibliotecaProject.Models;
+using static System.Net.WebRequestMethods;
 
 namespace BibliotecaProject.Controllers
 {
@@ -10,6 +11,7 @@ namespace BibliotecaProject.Controllers
     {
 		private readonly ILogger<UserController> _logger;
 		public readonly BibliotecaDbContext bibliotecaDbContext;
+		private readonly IHttpContextAccessor _http;
 		public UserController(BibliotecaDbContext bibliotecaDbContext)
 		{
 			this.bibliotecaDbContext = bibliotecaDbContext;
@@ -39,7 +41,7 @@ namespace BibliotecaProject.Controllers
 		[HttpPost]
 		public IActionResult RequestBook(string Title, string Author, string PublishingHouse, string ISBN)
 		{
-			var query = bibliotecaDbContext.Users.Where(u => u.Email == ""/*email dalla sessione*/);
+			var query = bibliotecaDbContext.Users.Where(u => u.Email == _http.HttpContext.Session.GetString("email"));
 			PurchaseQueue pq = new PurchaseQueue
 			{
 				Title = Title,
@@ -67,13 +69,7 @@ namespace BibliotecaProject.Controllers
                                  from l in bibliotecaDbContext.Loan
                                  where l.ID_Book == b.Id_book && l.ID_user == u.Id
                                  select b).ToList();
-
-
-
-
-
             return View(model);
-
         }
     }
 }

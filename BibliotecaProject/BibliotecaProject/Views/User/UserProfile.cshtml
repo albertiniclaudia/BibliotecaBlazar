@@ -1,4 +1,8 @@
-﻿<div class="row m-3 align-items-center" style="margin-left:5%, margin-right:auto%">
+﻿@page
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Http;
+@{
+<div class="row m-3 align-items-center" style="margin-left:5%, margin-right:auto%">
         <div class="col-6 ">
             <h1 class="text-center mb-3">Profilo di Andrea!</h1>
             <div class="card mb-3">
@@ -78,4 +82,4 @@
             </tr>
         </table>
     </div>
-
+}

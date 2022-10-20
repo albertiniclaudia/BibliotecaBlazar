@@ -1,31 +1,32 @@
 ﻿@page
 @using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Http
 @{
-    ViewBag.Title = "Home";
-    if(true)
+    ViewBag.Title = "Home User";
+    string role = Http.HttpContext.Session.GetString("role");
+    if(role == "User")
     {
     <div style="margin-left: 15%">
-                <div style="padding: 1%">
-                        <h3>
-                            Ciao Luca
-                        </h3>
-                    </div>
-                    <div>
-                        <a class="btn btn-outline-success b" asp-area="" asp-controller="User" asp-action="UserProfile"><span> Il mio profilo </span></a>
-                        <a class="btn btn-outline-success b" asp-area="" asp-controller="User" asp-action=""><span>  I miei ordini  </span></a>
-                        <a class="btn btn-outline-success b" asp-area="" asp-controller="User" asp-action="RequestBook"><span>  Richiedi Acquisto libro  </span></a>
-                    </div>
-    </div>
-    }
-    else if(false)
+        <div style="padding: 1%">
+            <h3>
+                Ciao @Http.HttpContext.Session.GetString("name")
+            </h3>
+        </div>
+        <div>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="User" asp-action="UserProfile"><span> Il mio profilo </span></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="User" asp-action=""><span>  I miei ordini  </span></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="User" asp-action="RequestBook"><span>  Richiedi Acquisto libro  </span></a>
+        </div>
+        </div>
+    }else if(role == "Admin")
     {
-        Redirect("../Admin/HomeAdmin");
-    }
-    else if(false)
+        Http.HttpContext.Response.Redirect("../Admin/HomeAdmin");
+    } else if(role == "Librarian")
     {
-        Redirect("../Bibliotecario/HomeLibrarian");
-    } else {
-        Redirect("../Home/Index");
+        Http.HttpContext.Response.Redirect("../Librarian/HomeLibrarian");
+    } else 
+    {
+        Http.HttpContext.Response.Redirect("../Home/Index");
     }
 }
 <style>

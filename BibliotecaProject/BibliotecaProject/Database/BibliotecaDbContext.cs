@@ -11,7 +11,7 @@ namespace BibliotecaProject.Database
 
         }
 
-        public DbSet<Book> Books { get; set; }
+		public DbSet<Book> Books { get; set; }
         
         public DbSet<Loan> Loan { get; set; }
 

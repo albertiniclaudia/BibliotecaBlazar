@@ -1,13 +1,15 @@
 ﻿@page
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Http
 @{
     ViewBag.Title = "Home";
-    var c = "Librarian"/*HttpContext.Session.GetString("role")*/;
-    if(c == "Librarian")
+    string role = Http.HttpContext.Session.GetString("role");
+    if(role == "Librarian")
     {
     <div style="margin-left: 15%">
         <div style="padding: 1%">
             <h3>
-                Ciao @{/*HttpContext.Session.GetString("nome")*/}
+                    Ciao @Http.HttpContext.Session.GetString("role")
             </h3>
         </div>
         <div>
@@ -41,15 +43,15 @@
             </table>
         </div>
     </div>
-    } else if(c == "Admin")
+    } else if(role == "Admin")
     {
-        Redirect("../Admin/HomeAdmin");
-    } else if(c == "User")
+         Http.HttpContext.Response.Redirect("../Admin/HomeAdmin");
+    } else if(role== "User")
     {
-        Redirect("../User/HomeUser");
+        Http.HttpContext.Response.Redirect("../User/HomeUser");
     } else
     {
-        Redirect("../Home/Index");
+        Http.HttpContext.Response.Redirect("../Home/Index");
     }
 }
 
