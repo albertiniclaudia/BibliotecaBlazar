@@ -7,32 +7,29 @@
         
         <div class="col-2">
             <label for="typeOfBooks">Type Of Books Filter</label>
-            <select class="btn btn-primary" form="merg" name="typeOfBooks" id="typeOfBooks">   
+            <select class="btn btn-primary" form="merg" name="typeOfBooks" id="typeOfBooks">
+                    <option value="" selected>Seleziona</option>
                     <option value=" giallo">Giallo</option>
                     <option value="narrativa">Narrativa</option>
                     <option value="horror">Horror</option>
                     <option value="rosa">Rosa</option>
                     <option value="avventura">Avventura</option>
-                @if (string.IsNullOrEmpty(@ViewBag.parameter1))
+                @if (!string.IsNullOrEmpty(@ViewBag.parameter1))
                 {
-                    <option value="" selected hidden>Seleziona</option>
-                }else {
-                     <option value=@ViewBag.parameter1 selected hidden>@ViewBag.parameter1</option>
-                     <option value="">Nessun Filtro</option>
+                    <option value=@ViewBag.parameter1 selected hidden>@ViewBag.parameter1</option>
+
                 }
             </select>
         </div>
         <div class="col-2">
                 <label for="publishingHouse"> Publishing House </label>
-                <select class="btn btn-primary" form="merg" name="publishingHouse">
+                <select class="btn btn-primary" form="merg" name="publishingHouse" id="publishingHouse">
+                <option value="" selected>Seleziona</option>
                 <option value="mondatori">Mondatori</option>
                 <option value="Universal">Universal</option>
-                @if (string.IsNullOrEmpty(@ViewBag.parameter2))
+                @if (!string.IsNullOrEmpty(@ViewBag.parameter2))
                 {
-                   <option value="" selected hidden>Seleziona</option>
-                }else {
-                     <option value=@ViewBag.parameter2 selected hidden>@ViewBag.parameter2</option>
-                     <option value="">Nessun Filtro</option>
+                  <option value=@ViewBag.parameter2 selected hidden>@ViewBag.parameter2</option>
                 }
                 
                 </select>
@@ -41,13 +38,7 @@
         <div class="col-3">
             <input type="text"  class="form-control" name="search" id="search" placeholder="search..." aria-label="Search">
         </div>
-        <div class="col-2">
-        <form method="get" id="merg">
-            <input class="btn btn-success" type="submit" value="Cerca"/>
-        </form>
-        
-        </div>
-        
+        <div class="col-2"></div>
         <div class="col-2">
             <a class="btn btn-success" asp-area="" asp-controller="Dashboard" asp-action="AddBooks">Nuovo Libro</a>
         </div>
@@ -87,11 +78,125 @@
 
     <script>
 
-        $(document).ready(function () {
+        $(document).ready(function(){
 
-            $("#search").keydown(function () {
+            var typeOfBookValue;
 
-                var searchValue = $(this).val();
+            var publishingHouseValue;
+
+            var typeOfBook;
+
+            var publishingHouse;
+
+            $("#typeOfBooks").change(function(){
+                
+                typeOfBookValue = $("#typeOfBooks").val();
+
+                $("table tr").each(function(result){
+
+                    typeOfBook = $(this).find("th:nth-child(4)").text();
+
+                    if(result !== 0){
+
+                        if (typeOfBook.indexOf(typeOfBookValue) !== 0 && typeOfBook.toLowerCase().indexOf(typeOfBookValue.toLowerCase()) < 0) {
+                             
+                             $(this).hide();
+
+                        }else{
+
+                            $(this).show();
+                        } 
+
+
+                    }
+
+                });
+
+
+            });
+
+            $("#publishingHouse").change(function(){
+
+                publishingHouseValue = $("#publishingHouse").val();
+
+                $("table tr").each(function(result){
+
+                    publishingHouse = $(this).find("th:nth-child(3)").text();
+
+                    if(result !== 0){
+
+                         if(publishingHouse.indexOf(publishingHouseValue) !== 0 && publishingHouse.toLowerCase().indexOf(publishingHouseValue.toLowerCase()) < 0){
+
+                             $(this).hide();
+
+                         }else{
+
+                             $(this).show();
+                         }
+
+
+                    }
+
+                });
+
+            });
+
+
+
+            $("#search").keyup(function (e) {
+
+                    if (e.keyCode != 46) {
+
+                        var searchValue = $(this).val();
+
+                    }
+
+                 $("table tr").each(function (results) {
+
+                        if (results !== 0) {
+
+                           var title = $(this).find("th:nth-child(1)").text();
+
+                           typeOfBook = $(this).find("th:nth-child(4)").text();
+
+                           publishingHouse = $(this).find("th:nth-child(3)").text();
+
+                           if (title.indexOf(searchValue) !== 0 && title.toLowerCase().indexOf(searchValue.toLowerCase()) < 0 
+                                 || typeOfBook.indexOf(typeOfBookValue) !== 0 && typeOfBook.toLowerCase().indexOf(typeOfBookValue.toLowerCase()) < 0 || 
+                                 (typeOfBook.indexOf(typeOfBookValue) === 0 && typeOfBook.toLowerCase().indexOf(typeOfBookValue.toLowerCase()) > -1 
+                                 && publishingHouse.indexOf(publishingHouseValue) !== 0
+                                 && publishingHouse.toLowerCase().indexOf(publishingHouseValue.toLowerCase()) < 0)) {
+                                
+                                    $(this).hide();
+
+                           }else {
+
+                                    $(this).show();
+
+                           }
+
+
+                        }
+
+                 });
+            });
+
+        });
+
+       @* $(document).ready(function () {
+
+            $("#search").keyup(function (e) {
+
+                if (e.keyCode == 46) {
+
+                    console.log("ops");
+
+                } else {
+
+                    var searchValue = $(this).val();
+
+                }
+
 
                 $("table tr").each(function(results) {
 
@@ -113,17 +218,19 @@
                 });
 
             });
-        });
+        }); *@
 
-         $(document).ready(function () {
+        @* $(document).ready(function () {
 
-            $("#typeOfBooks").change(function () {
+            $("#typeOfBooks,#publishingHouse").change(function () {
 
-                var typeOfBooksValue = $(this).val();
+                var typeOfBooksValue = $("#typeOfBooks").val();
+
+                var publishingHouseValue = $("#publishingHouse").val();
 
                 $("table tr").each(function(results) {
 
-                    if(results !== 0){
+                    if (results !== 0 && !publishingHouseValue.trim()) {
 
                         var typeOfBooks = $(this).find("th:nth-child(4)").text();
 
@@ -135,13 +242,55 @@
 
                             $(this).show();
                         }
+                        
+                    } else if (results !== 0 && publishingHouseValue.trim()) {
+
+                        var publishingHouse = $(this).find("th:nth-child(3)").text();
+
+                        if (publishingHouse.indexOf(publishingHouseValue) !== 0 && publishingHouse.toLowerCase().indexOf(publishingHouseValue.toLowerCase()) < 0) {
+
+                            $(this).hide();
+
+                        } else {
+
+                            $(this).show();
+                        }
+
+
+                    } 
+
+                });
+
+            });
+        }); *@
+
+       @* $(document).ready(function () {
+
+            $("#publishingHouse").change(function () {
+
+                var typeOfBooksValue = $(this).val();
+
+                $("table tr").each(function (results) {
+
+                    if (results !== 0) {
+
+                        var typeOfBooks = $(this).find("th:nth-child(3)").text();
+
+                        if (typeOfBooks.indexOf(typeOfBooksValue) !== 0 && typeOfBooks.toLowerCase().indexOf(typeOfBooksValue.toLowerCase()) < 0) {
+
+                            $(this).hide();
+
+                        } else {
+
+                            $(this).show();
+                        }
 
                     }
 
                 });
 
             });
-        });
+        });*@
 
 
     </script>
