@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\UserModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Controllers\NewFile.txt" />
     <None Remove="Views\Librarian\eddde" />
     <None Remove="Views\Librarian\NewFile.txt" />
@@ -24,6 +28,10 @@
     </PackageReference>
     <PackageReference Include="Microsoft.SqlServer.Server" Version="1.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

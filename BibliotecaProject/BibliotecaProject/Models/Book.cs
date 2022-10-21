@@ -39,6 +39,9 @@ namespace BibliotecaProject.Models
         [MaxLength(13)]
         public string ISBN { set; get; }
 
+        [Url]
+        public string Image { get; set; }
+
         public ICollection<PositionBook> PositionBook { get; set; }
 
 

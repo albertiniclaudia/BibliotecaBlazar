@@ -4,6 +4,7 @@ using BibliotecaProject.Database;
 using Microsoft.AspNetCore.Mvc;
 using BibliotecaProject.Models;
 using static System.Net.WebRequestMethods;
+using Microsoft.AspNetCore.Http;
 
 namespace BibliotecaProject.Controllers
 {
@@ -12,18 +13,18 @@ namespace BibliotecaProject.Controllers
 		private readonly ILogger<UserController> _logger;
 		public readonly BibliotecaDbContext bibliotecaDbContext;
 		private readonly IHttpContextAccessor _http;
-		public UserController(BibliotecaDbContext bibliotecaDbContext)
+		public UserController(BibliotecaDbContext bibliotecaDbContext, IHttpContextAccessor httpContextAccessor)
 		{
 			this.bibliotecaDbContext = bibliotecaDbContext;
+			_http = httpContextAccessor;
 		}
 		public IActionResult UserProfile()
         {
-			UserModel model = new UserModel();
-			model.user = bibliotecaDbContext.Users.Where(u => u.Email == _http.HttpContext.Session.GetString("email")).FirstOrDefault();
-			model.getLoanData = (from l in bibliotecaDbContext.Loan
-								 from u in bibliotecaDbContext.Users
-								 where l.ID_user == u.Id
-								 select l).ToList();
+			string mail = _http.HttpContext.Session.GetString("email");
+			Model2 model = new Model2();
+			model.User = bibliotecaDbContext.Users.Where(u => u.Email == mail).FirstOrDefault();
+			model.Loans = bibliotecaDbContext.Loan.Where(u => u.ID_user == model.User.Id && u.RentalEndData == null).ToList();
+			model.EndedLoans = bibliotecaDbContext.Loan.Where(u => u.ID_user == model.User.Id && u.RentalEndData != null).ToList();
 			return View(model);
         }
 		public IActionResult Contattaci()
@@ -44,9 +45,10 @@ namespace BibliotecaProject.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult RequestBook(string Title, string Author, string PublishingHouse, string ISBN)
+		public void RequestBook(string Title, string Author, string PublishingHouse, string ISBN)
 		{
-			var query = bibliotecaDbContext.Users.Where(u => u.Email == _http.HttpContext.Session.GetString("email"));
+			string mail = _http.HttpContext.Session.GetString("email");
+			var query = bibliotecaDbContext.Users.Where(u => u.Email == mail);
 			PurchaseQueue pq = new PurchaseQueue
 			{
 				Title = Title,
@@ -57,8 +59,8 @@ namespace BibliotecaProject.Controllers
 			};
 			bibliotecaDbContext.Add(pq);
 			bibliotecaDbContext.SaveChanges();
-			return View(pq);
-        }
+			_http.HttpContext.Response.Redirect("../User/HomeUser");
+		}
         public IActionResult dashboardUser()
         {
             IndexModel model = new IndexModel();
