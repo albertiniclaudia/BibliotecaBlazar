@@ -5,23 +5,24 @@ namespace BibliotecaProject.Models
 {
     public class User
     {
-
         [Key]
-        public Guid Id { get; set; }
+        public Guid Id { get; set; }    
 
         public string Name { get; set; }
 
-        public string Surname { get; set; } 
+        public string PhoneNumber { get; set; } 
 
-        public string City { get; set; }
-
-        public string PhoneNumber { get; set; }
-
+        public string Surname { get; set; }
+      
         public string Role { get; set; }
 
         public int Age { get; set; }
 
-        public string Password { get; set; }
+        public Guid Id_Parent { get; set; }
+
+        [MaxLength(15)]
+        [DataType(DataType.Password)]
+        public string Password { get; set;}
 
         public string Email { get; set; }
 
@@ -29,6 +30,7 @@ namespace BibliotecaProject.Models
 
         public string FiscalCode { get; set; }
 
+        //public User Parent { get; set; }  
 
     }
 }

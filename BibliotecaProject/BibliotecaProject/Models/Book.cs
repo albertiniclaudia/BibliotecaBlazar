@@ -22,7 +22,14 @@ namespace BibliotecaProject.Models
 
         public string Description { get; set; }
 
-        public string ISBN { get; set; }
+        [Required]
+        [MaxLength(13)]
+        public string ISBN { set; get; }
+
+        [Url]
+        public string Image { get; set; }
+
+        public ICollection<PositionBook> PositionBook { get; set; }
 
 
     }
