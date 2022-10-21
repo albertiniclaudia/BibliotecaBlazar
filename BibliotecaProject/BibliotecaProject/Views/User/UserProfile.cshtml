@@ -2,52 +2,39 @@
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor Http;
 @{
-<div class="row m-3 align-items-center" style="margin-left:5%, margin-right:auto%">
-        <div class="col-6 ">
-            <h1 class="text-center mb-3">Profilo di Andrea!</h1>
-            <div class="card mb-3">
-            <div class="card-body text-center">
-                <h3 class="card-title">Dati Utente</h3>
-                <h4 class="card-subtitle mb-2 text-muted">Nome : Andrea</h4>
-                <h5 class="card-subtitle mb-2 text-muted">Cognome : Arturi</h5>
-                <h5 class="card-subtitle mb-2">Numero di Telefono : +39 38782080345</h5>
-                <h5 class="card-subtitle mb-2">Via : via lanfranconi 10</h5>
-                <h5 class="card-subtitle mb-2">cf : QSSHMZ98D07M052G</h5>
-            </div>
-        </div>
-    </div>
-    <div class="col-6">
-        <div class="card">
-          <div class="card-body">
-                        <h5 class="card-title">Title : Divina Commedia</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Autore : Dante Alighieri</h6>
-                        <h6 class="card-subtitle mb-2 text-muted">Genere : Avventura</h6>
-                        <p class="card-text">Descrizione: Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <h6 class="card-subtitle mb-2 text-muted">ISBN: 1234567891234</h6>
-           </div>
-        </div>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Title : Divina Commedia</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Autore : Dante Alighieri</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Genere : Avventura</h6>
-                    <p class="card-text">Descrizione: Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <h6 class="card-subtitle mb-2 text-muted">ISBN: 1234567891234</h6>
+    if (Model.user != null)
+    {
+        <div class="row m-3 align-items-center" style="margin-left:5%, margin-right:auto%">
+            <div class="col-6 ">
+                <h1 class="text-center mb-3">Profilo di Andrea!</h1>
+                <div class="card mb-3">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Dati Utente</h3>
+                        <h4 class="card-subtitle mb-2 text-muted">Nome : @Model.user.Name </h4>
+                        <h5 class="card-subtitle mb-2 text-muted">Cognome : @Model.user.Surname </h5>
+                        <h5 class="card-subtitle mb-2">Numero di Telefono : @Model.user.PhoneNumber </h5>
+                        <h5 class="card-subtitle mb-2">Via : @Model.user.ResidentialAddress /h5>
+                            <h5 class="card-subtitle mb-2">cf : @Model.user.FiscalCode</h5>
+                    </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Title : Divina Commedia</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Autore : Dante Alighieri</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Genere : Avventura</h6>
-                    <p class="card-text">Descrizione: Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <h6 class="card-subtitle mb-2 text-muted">ISBN: 1234567891234</h6>
-                </div>
+            <div class="col-6">
+                @foreach (var item in Model.getLoanData)
+                {
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Title : @item.Book.Title</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Autore : @item.Book.Author</h6>
+                            <h6 class="card-subtitle mb-2 text-muted">Genere : @item.Book.TypeOfBooks</h6>
+                            <p class="card-text">Descrizione: @item.Book.Description</p>
+                            <h6 class="card-subtitle mb-2 text-muted">ISBN: @item.Book.ISBN</h6>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
-    </div>
-    <div class="col-12">
-        <table class="table">
+        <div class="col-12">
+            <table class="table">
             <thead>
             <th>Title</th>
             <th>Author</th>
@@ -82,4 +69,5 @@
             </tr>
         </table>
     </div>
+    }
 }
