@@ -8,12 +8,11 @@ namespace BibliotecaProject.Database
         public BibliotecaDbContext(DbContextOptions<BibliotecaDbContext> options) : base(options)
         {
 
-
         }
 
 		public DbSet<Book> Books { get; set; }
         
-        public DbSet<Loan> Loan { get; set; }
+        public DbSet<Loan> Loans { get; set; }
 
         public DbSet<LoanQueue> LoanQueues { get; set; }
 

@@ -8,13 +8,10 @@ namespace BibliotecaProject.Models
         [Key]
         public Guid Id_loan { get; set; }
 
-        [Required]
         public DateTime RentalStartData { get; set; }
 
-        [Required] 
         public DateTime RentalEndData { get; set; }
-
-        
+   
         public Guid ID_Book { get; set; }
 
         public Guid ID_user { get; set; }
@@ -23,7 +20,7 @@ namespace BibliotecaProject.Models
         public Book Book { get; set; }
 
         [ForeignKey("ID_user")]
-        public Parent Parent { get; set; }
+        public User User { get; set; }
 
     }
 }

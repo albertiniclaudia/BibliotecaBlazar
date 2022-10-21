@@ -11,24 +11,20 @@ namespace BibliotecaProject.Models
 
         public Guid ID_user { get; set; }
 
-        [Required]
-        [MaxLength(255)]
+
         public string Title { get; set; }
 
 
-        [MaxLength(100)]
-        public string? Author { get; set; }
+        public string Author { get; set; }
 
 
-        [MaxLength(100)]
-        public string? PublishingHouse { get; set; }
+        public string PublishingHouse { get; set; }
 
 
-        [MaxLength(13)]
-        public string? ISBN { set; get; }
+        public string ISBN { get; set; }
 
         [ForeignKey("ID_user")]
-        public Parent Parent { get; set; }
+        public User User { get; set; }
 
     }
 }

@@ -11,7 +11,8 @@ namespace BibliotecaProject.Controllers
 {
     public class DashboardController : Controller
     {
-                public readonly BibliotecaDbContext bibliotecaDbContext;
+     
+        public readonly BibliotecaDbContext bibliotecaDbContext;
 
         public DashboardController(BibliotecaDbContext bibliotecaDbContext)
         {
@@ -36,10 +37,13 @@ namespace BibliotecaProject.Controllers
 
         public IActionResult ListOfBooks()
         {
-			return View();
-		}
+            var query = from b in bibliotecaDbContext.Books
+                        select b;
 
-     /* [HttpGet]
+			return View(query);
+		}
+       
+       /* [HttpGet]
         public IActionResult ListOfBooks(string search, string typeOfBooks, string publishingHouse)
         {
 
@@ -113,16 +117,6 @@ namespace BibliotecaProject.Controllers
             return View(query);
 
         } */
-
-
-        
-
-        
-
-        
-
-
-        
 
     }
 }

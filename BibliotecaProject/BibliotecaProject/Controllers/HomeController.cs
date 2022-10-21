@@ -6,12 +6,13 @@ using Microsoft.Extensions.Options;
 using NuGet.Versioning;
 using System.Net.Mail;
 using System.Net;
-//using System.Diagnostics;
+using System.Diagnostics;
 
 namespace BibliotecaProject.Controllers
 {
     public class HomeController : Controller
     {
+		
         private readonly ILogger<HomeController> _logger;
 		public readonly BibliotecaDbContext bibliotecaDbContext;
 		private readonly IHttpContextAccessor _http;
@@ -43,9 +44,14 @@ namespace BibliotecaProject.Controllers
         {
             return View();
         }
+
 		public IActionResult CatalogoLibri()
 		{
-			return View();
+
+			var query = from b in bibliotecaDbContext.Books
+						select b;
+
+			return View(query);
 		}
 
 		public IActionResult HomeAdmin()
@@ -66,17 +72,14 @@ namespace BibliotecaProject.Controllers
 		[HttpPost]
 		public IActionResult RecuperoPassword(string email)
 		{
-			/*var smtpClient = new SmtpClient("smtp.gmail.com")
+			var client = new SmtpClient("smtp.mailtrap.io", 2525)
 			{
-				Port = 587,
-				Credentials = new NetworkCredential(),
-				EnableSsl = true,
+				Credentials = new NetworkCredential("6ab5386842dbc6", "9654bdaac28c9a"),
+				EnableSsl = true
 			};
-
-			smtpClient.Send(email, email , "subject", "body");*/
+			client.Send("RecuperoEmail@Biblioteca.com", email, "Hello world", "testbody");
 			return View("Index");
 		}
-
 		[HttpPost]
 		public IActionResult Index(string email, string password)
 		{
@@ -102,7 +105,7 @@ namespace BibliotecaProject.Controllers
 					return View("../User/HomeUser");
 				}
 			}
-			return View("Index");/*
+			return View("Index");
 			_http.HttpContext.Session.SetString("email", email);
 			_http.HttpContext.Session.SetString("name", "Luca");
 			_http.HttpContext.Session.SetString("role", "Admin");*/

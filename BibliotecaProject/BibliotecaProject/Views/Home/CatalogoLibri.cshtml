@@ -1,176 +1,166 @@
-﻿    <h1>Il Nostro Catalogo</h1>
-    <div class="row mb-3">
-        <div class="col-2  mb-3">
-            <label for="typeOfBooks">Type Of Books Filter</label>
-            <select class="btn btn-primary" form="merg" name="typeOfBooks" id="typeOfBooks">
-                    <option value="" selected hidden>Seleziona</option>
+﻿@model IEnumerable<Book>
+
+        <h1 style="text-align:center;" class="mt-3">Il Nostro Catalogo</h1>
+        <div class="row mb-3">
+        <div class="col-2  mb-5">
+            <label for="typeOfBooks" class="ms-5">Type Of Books Filter</label>
+            <select class="btn btn-primary ms-5" form="merg" name="typeOfBooks" id="typeOfBooks">
+                    <option value="" selected>Seleziona</option>
                     <option value=" giallo">Giallo</option>
                     <option value="narrativa">Narrativa</option>
                     <option value="horror">Horror</option>
                     <option value="rosa">Rosa</option>
                     <option value="avventura">Avventura</option>
-                    
             </select>
         </div>
         <div class="col-2  mb-3">
                 <label for="publishingHouse"> Publishing House </label>
-                <select class="btn btn-primary" form="merg" name="publishingHouse">
+                <select class="btn btn-primary" form="merg" name="publishingHouse" id="publishingHouse">
+                <option value="" selected>Seleziona</option>
                 <option value="">Nessun Filtro</option>
                 <option value="mondatori">Mondatori</option>
                 <option value="Universal">Universal</option>
-                
                 </select>
         </div>
-        <div class="col-4  mb-3"></div>
-        <div class="col-4  mb-3">
-            <input type="text"  class="form-control" name="search" id="search" placeholder="search..." aria-label="Search">
+        <div class="col-3  mb-3 me-5" id="filterable"></div>
+        <div class="col-4  mb-4">
+            <input type="text"  class="form-control mb-3" name="search" id="search" placeholder="search..." aria-label="Search">
         </div>
-        <div class="col-3  mb-1" id="filterable">
-        <div class="card">
-            <div class="card-body">
-                    <h5 class="card-title">Title : dvina holday</h5>
-                    <h5 class="card-subtitle mb-2 text-muted">Autore : Dante Alighieri</h5>
-                    <h5 class="card-subtitle mb-2 text-muted">Genere : Avventura</h5>
-                    <h5 class="card-text">Descrizione: Some quick example text to build on the card title and make up the bulk of the card's content.</h5>
-                    <h5 class="card-subtitle mb-2 text-muted">ISBN: 1234567891234</h5>
-                    <div class="mx-auto text-center">
-                        <a class="btn btn-primary" asp-controller="Home" asp-action="DetailBook">Prenota</a>
-                    </div>
-            </div>
-        </div>
-        </div>
-    <div class="col-3  mb-1" id="filterable">
-        <div class="card">
-            <div class="card-body">
-                    <h5 class="card-title">Title : Divina Commedia</h5>
-                    <h5 class="card-subtitle mb-2 text-muted">Autore : Dante Alighieri</h5>
-                    <h5 class="card-subtitle mb-2 text-muted">Genere : Avventura</h5>
-                    <h5 class="card-text">Descrizione: Some quick example text to build on the card title and make up the bulk of the card's content.</h5>
-                    <h5 class="card-subtitle mb-2 text-muted">ISBN: 1234567891234</h5>
-                    <div class="mx-auto text-center">
-                        <a class="btn btn-primary" asp-controller="Home" asp-action="DetailBook">Prenota</a>
-                    </div>
-                </div>
-        </div>
-        </div>
-    <div class="col-3  mb-1" id="filterable">
-            <div class="card">
-                <div class="card-body ">
-                    <h5 class="card-title">Title : Dinosaur</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Autore : Dante Alighieri</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Genere : Avventura</h6>
-                    <p class="card-text">Descrizione: Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <h6 class="card-subtitle mb-2 text-muted">ISBN: 1234567891234</h6>
-                    <div class="mx-auto text-center">
-                        <a class="btn btn-primary" asp-controller="Home" asp-action="DetailBook">Prenota</a>
-                    </div>
-
-                </div>
-            </div>
-        </div>
+        @foreach(var item in Model){
         <div class="col-3  mb-1" id="filterable">
             <div class="card">
-                <div class="card-body ">
-                    <h5 class="card-title">Title : Law of judje</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Autore : Dante Alighieri</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Genere : Avventura</h6>
-                    <p class="card-text">Descrizione: Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <h6 class="card-subtitle mb-2 text-muted">ISBN: 1234567891234</h6>
+            <div class="card-body">
+                    <img src="https://play-lh.googleusercontent.com/SF5BMT_IsoF7GBl4USjTr4CrNvXkFClA26qvzyKX6chRdGaXr6JDvnTVqO3wv2EF161VC2jD80YTedD-6HI" style="max-width:100%; max-height:100%"/>
+                    <h3 class="card-title" style="text-align:center;">Title:@item.Title</h3>
+                   @* <h5 class="card-subtitle mb-2 text-muted">Autore:@item.Author</h5>
+                    <h5 class="card-subtitle mb-2 text-muted">Genere:@item.TypeOfBooks</h5>
+                    <h5 class="card-subtitle mb-2 text-muted">Publishing House:@item.PublishingHouse</h5>
+                    <h5 class="card-subtitle mb-2 text-muted">Descrizione:@item.Description</h5>
+                    <h5 class="card-subtitle mb-2 text-muted">ISBN:@item.ISBN</h5>*@
                     <div class="mx-auto text-center">
                         <a class="btn btn-primary" asp-controller="Home" asp-action="DetailBook">Prenota</a>
+                        <a class="btn btn-primary" asp-controller="Home" asp-action="DetailBook" asp-route-id=@item.Id_book>Detail Book</a>
                     </div>
-                </div>
             </div>
         </div>
-    @*  <div class="col-3  mb-1">
-            <div class="card">
-                <div class="card-body ">
-                    <h5 class="card-title">Title : Divina Commedia</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Autore : Dante Alighieri</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Genere : Avventura</h6>
-                    <p class="card-text">Descrizione: Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <h6 class="card-subtitle mb-2 text-muted">ISBN: 1234567891234</h6>
-                    <div class="mx-auto text-center">
-                        <a class="btn btn-primary" asp-controller="Home" asp-action="DetailBook">Prenota</a>
-                    </div>
-                </div>
-            </div>
         </div>
-        <div class="col-3  mb-1">
-            <div class="card">
-                <div class="card-body ">
-                    <h5 class="card-title">Title : Divina Commedia</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Autore : Dante Alighieri</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Genere : Avventura</h6>
-                    <p class="card-text">Descrizione: Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <h6 class="card-subtitle mb-2 text-muted">ISBN: 1234567891234</h6>
-                    <div class="mx-auto text-center">
-                        <a class="btn btn-primary" asp-controller="Home" asp-action="DetailBook">Prenota</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-3  mb-1" >
-            <div class="card">
-                <div class="card-body ">
-                    <h5 class="card-title">Title : Divina Commedia</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Autore : Dante Alighieri</h6>
-                    <h6 class="card-subtitle mb-2 text-muted">Genere : Avventura</h6>
-                    <p class="card-text">Descrizione: Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <h6 class="card-subtitle mb-2 text-muted">ISBN: 1234567891234</h6>
-                    <div class="mx-auto text-center">
-                        <a class="btn btn-primary" asp-controller="Home" asp-action="DetailBook">Prenota</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-3  mb-1">
-            <div class="card">
-                <div class="card-body ">
-                    <h5 class="card-title">Title : Oivina Commedia</h5>
-                    <p class="card-subtitle mb-2 text-muted">Autore : Dante Alighieri</p>
-                    <p class="card-subtitle mb-2 text-muted">Genere : Avventura</p>
-                    <p class="card-text">Descrizione: Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <p class="card-subtitle mb-2 text-muted">ISBN: 1234567891234</p>
-                    <div class="mx-auto text-center">
-                        <a class="btn btn-primary" asp-controller="Home" asp-action="DetailBook">Prenota</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>*@
+        }
 </div>
 @section Scripts{
 
-    <script>
+<script>
 
-       $(document).ready(function () {
+    $(document).ready(function(){
 
-            $("#search").keyup(function () {
+            var typeOfBookValue;
 
-                var searchValue = $(this).val();
+            var publishingHouseValue;
 
-                $("div #filterable").filter(function(results){
-                        
+            var typeOfBook;
 
-                    if ($(this).text().indexOf(searchValue) !== 0 && $(this).text().toLowerCase().indexOf(searchValue.toLowerCase()) < 0) {
+            var publishingHouse;
 
-                        $(this).hide();
 
-                    } else {
+            $("#typeOfBooks").change(function() {
 
-                        $(this).show();
+                typeOfBookValue = $("#typeOfBooks").val();
+
+                $("div #filterable").filter(function(result) {
+
+                    typeOfBook = $(this).find("h5:nth-child(3)").text();
+
+                    publishingHouse = $(this).find("h5:nth-child(4)").text();
+
+                    if (result !== 0) {
+
+                        if ((typeOfBook.toLowerCase().indexOf(typeOfBookValue.toLowerCase()) < 0)
+                            || (publishingHouseValue && publishingHouseValue !== "" && publishingHouse.toLowerCase().indexOf(publishingHouseValue.toLowerCase()) < 0)) {
+
+                            $(this).hide();
+
+                        } else {
+
+                            $(this).show();
+                        }
+
+
                     }
 
+                });
+
+
+            });
+
+
+            $("#publishingHouse").change(function () {
+
+                publishingHouseValue = $("#publishingHouse").val();
+
+                $("div #filterable").filter(function(result) {
+
+                    publishingHouse = $(this).find("h5:nth-child(4)").text();
+
+                    typeOfBook = $(this).find("h5:nth-child(3)").text();
+
+                    if (result !== 0) {
+
+                        if ((publishingHouse.toLowerCase().indexOf(publishingHouseValue.toLowerCase()) < 0)
+                            || (typeOfBookValue && typeOfBookValue !== "" && typeOfBook.toLowerCase().indexOf(typeOfBookValue.toLowerCase()) < 0)) {
+
+                            $(this).hide();
+
+                        } else {
+
+
+                            $(this).show();
+                        }
+
+
+                    }
 
                 });
 
             });
 
-        });
+            
+            $("#search").keyup(function(e) {
 
+                 if (e.keyCode != 46) {
 
-    </script>
+                     var searchValue = $(this).val();
+
+                 }
+
+                $("div #filterable").filter(function (results) {
+
+                    if (results !== 0) {
+
+                         var title = $(this).find("h5:nth-child(1)").text();
+
+                         typeOfBook = $(this).find("h5:nth-child(3)").text();
+
+                         publishingHouse = $(this).find("h5:nth-child(4)").text();
+
+                        if ((title.toLowerCase().indexOf(searchValue.toLowerCase()) < 0)
+                            || (typeOfBookValue && typeOfBookValue !== "" && typeOfBook.toLowerCase().indexOf(typeOfBookValue.toLowerCase()) < 0)
+                            || (publishingHouseValue  && publishingHouseValue !== "" && publishingHouse.toLowerCase().indexOf(publishingHouseValue.toLowerCase()) < 0)) {
+
+                                $(this).hide();
+
+                        }else {
+
+                                $(this).show();
+
+                        }
+
+                    }
+
+                });
+
+            });
+
+    });
+
+</script>
 
 }
