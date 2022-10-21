@@ -59,9 +59,14 @@ namespace BibliotecaProject.Controllers
 			return View();
 		}
 
-		public IActionResult DetailBook()
+		public IActionResult DetailBook(Guid id)
         {
-            return View();
+
+			var query = from b in bibliotecaDbContext.Books
+						where b.Id_book == id
+						select b;
+
+            return View(query);
         }
 
 		public IActionResult RecuperoPassword()
@@ -108,7 +113,7 @@ namespace BibliotecaProject.Controllers
 			return View("Index");
 			_http.HttpContext.Session.SetString("email", email);
 			_http.HttpContext.Session.SetString("name", "Luca");
-			_http.HttpContext.Session.SetString("role", "Admin");*/
+			_http.HttpContext.Session.SetString("role", "Admin");
 			return View("../User/HomeUser");
 		}
     }

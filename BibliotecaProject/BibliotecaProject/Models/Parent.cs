@@ -15,5 +15,8 @@ namespace BibliotecaProject.Models
         public string PhoneNumber { get; set; } 
 
         public string Surname { get; set; }
+
+        [ForeignKey("ID_user")]
+        public User User { get; set; }
     }
 }

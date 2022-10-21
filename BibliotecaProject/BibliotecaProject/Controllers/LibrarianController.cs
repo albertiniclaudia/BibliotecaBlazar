@@ -55,15 +55,15 @@ namespace BibliotecaProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddBooks(string title, string author, string publishingHouse, int numberOfCopy, string typeOfBooks, string description, string isbn)
+        public IActionResult AddBooks(string title, string author, string publishingHouse, string typeOfBooks, string description, string isbn,string imageUrl)
         {
 
             var books = new Book()
             {
                 Title = title,
                 Author = author,
+                ImageUrl = imageUrl,
                 PublishingHouse = publishingHouse,
-                NumberOfCopy = numberOfCopy,
                 TypeOfBooks = typeOfBooks,
                 Description = description,
                 ISBN = isbn
@@ -90,7 +90,7 @@ namespace BibliotecaProject.Controllers
 
         }
        [HttpPost]
-        public IActionResult EditBooks(string Title, string Author, string PublishingHouse, int NumberOfCopy, string TypeOfBooks, string Description, string ISBN)
+        public IActionResult EditBooks(string Title, string Author, string PublishingHouse, string TypeOfBooks, string Description, string ISBN)
         {
 
 
@@ -103,7 +103,6 @@ namespace BibliotecaProject.Controllers
                 item.Title = Title;
                 item.Author = Author;
                 item.PublishingHouse = PublishingHouse;
-                item.NumberOfCopy = NumberOfCopy;
                 item.TypeOfBooks = TypeOfBooks;
                 item.Description = Description;
                 item.ISBN = ISBN;

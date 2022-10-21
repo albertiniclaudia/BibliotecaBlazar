@@ -8,29 +8,30 @@ namespace BibliotecaProject.Models
         [Key]
         public Guid Id { get; set; }    
 
-        public string Name { get; set; }
+        
+        public string? Name { get; set; }
 
-        public string PhoneNumber { get; set; } 
+        public string? PhoneNumber { get; set; } 
 
-        public string Surname { get; set; }
+        public string? Surname { get; set; }
       
         public string Role { get; set; }
 
-        public int Age { get; set; }
-
-        public Guid Id_Parent { get; set; }
+        public int? Age { get; set; }
 
         [MaxLength(15)]
         [DataType(DataType.Password)]
+        [Required]
         public string Password { get; set;}
 
+        [Required]
         public string Email { get; set; }
 
-        public string ResidentialAddress { get; set; }  
+        public string? ResidentialAddress { get; set; }  
 
-        public string FiscalCode { get; set; }
+        public string? FiscalCode { get; set; }
+        public string? City { get; set; }
 
-        //public User Parent { get; set; }  
 
     }
 }

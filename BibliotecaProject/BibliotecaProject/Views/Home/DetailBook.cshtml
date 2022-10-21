@@ -4,20 +4,21 @@
     @foreach(var item in Model){
     <div class="row">
     <div class="col-4 m-3">
-            <img src="https://play-lh.googleusercontent.com/SF5BMT_IsoF7GBl4USjTr4CrNvXkFClA26qvzyKX6chRdGaXr6JDvnTVqO3wv2EF161VC2jD80YTedD-6HI" class="img-fluid" />
+            <img src=@item.ImageUrl class="img-fluid" />
      </div>
      <div class="col-7 m-3">
          <h1 class="mb-3">@item.Title</h1>
         <h3>Dati Libro</h3>
-        <h6 class="mb-2 text-muted">Autore :@item.Author</h6>
-        <h6 class="mb-2 text-muted">Genere :@item.TypeOfBooks</h6>
+        <h6 class="mb-2 text-muted">Autore :@item.Author</h6><br>
+        <h6 class="mb-2 text-muted">Genere :@item.TypeOfBooks</h6><br>
+        <h6 class="card-subtitle mb-2 text-muted">Publishing House:@item.PublishingHouse</h6><br>
         <h6 class="card-subtitle mb-2 text-muted">ISBN:@item.ISBN</h6>
        
                 <h2>Descrizione:</h2>
-                <p>@item.Description</p>
-      
+                <p>@item.Description</p> 
+
      
-                <button class="btn btn-success">Prenota</button>
+        <button class="btn btn-success">Prenota</button>
 
      </div>
      </div>

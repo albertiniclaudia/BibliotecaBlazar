@@ -16,7 +16,7 @@ namespace BibliotecaProject.Models
 
         public DateTime ExpirationDate { get; set; }
 
-        [ForeignKey("Id_user")]
+        [ForeignKey("ID_user")]
         public User User { get; set; } 
 
     }

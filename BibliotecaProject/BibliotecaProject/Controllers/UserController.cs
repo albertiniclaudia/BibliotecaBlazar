@@ -24,8 +24,8 @@ namespace BibliotecaProject.Controllers
 			string mail = _http.HttpContext.Session.GetString("email");
 			Model2 model = new Model2();
 			model.User = bibliotecaDbContext.Users.Where(u => u.Email == mail).FirstOrDefault();
-			model.Loans = bibliotecaDbContext.Loan.Where(u => u.ID_user == model.User.Id && u.RentalEndData == null).ToList();
-			model.EndedLoans = bibliotecaDbContext.Loan.Where(u => u.ID_user == model.User.Id && u.RentalEndData != null).ToList();
+			model.Loans = bibliotecaDbContext.Loans.Where(u => u.ID_user == model.User.Id && u.RentalEndData == null).ToList();
+			model.EndedLoans = bibliotecaDbContext.Loans.Where(u => u.ID_user == model.User.Id && u.RentalEndData != null).ToList();
 			return View(model);
         }
 		public IActionResult Contattaci()

@@ -12,11 +12,10 @@ namespace BibliotecaProject.Models
 
         public string Author { get; set; }
 
+        [Url]
         public string ImageUrl { get; set; }
 
         public string PublishingHouse { get; set; }
-
-        public int NumberOfCopy { get; set; }
 
         public string TypeOfBooks { get; set; }
 
@@ -25,11 +24,6 @@ namespace BibliotecaProject.Models
         [Required]
         [MaxLength(13)]
         public string ISBN { set; get; }
-
-        [Url]
-        public string Image { get; set; }
-
-        public ICollection<PositionBook> PositionBook { get; set; }
 
 
     }
