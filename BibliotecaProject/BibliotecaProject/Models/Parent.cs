@@ -8,15 +8,15 @@ namespace BibliotecaProject.Models
         [Key]
         public Guid Id { get; set; }
 
-        public Guid ID_user { get; set; }
-
         public string Name { get; set; }
 
         public string PhoneNumber { get; set; } 
 
         public string Surname { get; set; }
 
-        [ForeignKey("ID_user")]
-        public User User { get; set; }
-    }
+		public Guid Id_User { get; set; }
+
+		[ForeignKey("Id_User")]
+		public User User { get; set; }
+	}
 }

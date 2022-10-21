@@ -8,8 +8,9 @@ namespace BibliotecaProject.Models
         [Key]
         public Guid Id { get; set; }    
 
-        
-        public string? Name { get; set; }
+        public string Name { get; set; }
+
+        public string? PhoneNumber { get; set; } 
 
         public string? PhoneNumber { get; set; } 
 
@@ -24,13 +25,13 @@ namespace BibliotecaProject.Models
         [Required]
         public string Password { get; set;}
 
-        [Required]
-        public string Email { get; set; }
+        [EmailAddress]
+		[Required]
+		public string Email { get; set; }
 
         public string? ResidentialAddress { get; set; }  
 
         public string? FiscalCode { get; set; }
-        public string? City { get; set; }
 
 
     }

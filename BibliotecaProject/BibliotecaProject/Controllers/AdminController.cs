@@ -91,8 +91,7 @@ namespace BibliotecaProject.Controllers
                 Surname = Surname,
                 Email = Email,
                 Password = Password,
-                Role = Role
-
+                Role = Role,
             };
             bibliotecaDbContext.Users.Add(user);
 
