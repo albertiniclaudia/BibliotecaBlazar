@@ -36,7 +36,10 @@ namespace BibliotecaProject.Controllers
 
         public IActionResult ListOfBooks()
         {
-			return View();
+            var query = from b in bibliotecaDbContext.Books
+                        select b;
+
+			return View(query);
 		}
 
      /* [HttpGet]

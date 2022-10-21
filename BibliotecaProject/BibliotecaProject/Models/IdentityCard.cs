@@ -10,6 +10,8 @@ namespace BibliotecaProject.Models
 
         public Guid Id_user { get; set; }
 
+        public Guid Id_parent { get; set; }
+
         public string Type { get; set; }
 
         public string Emissary { get; set; }   
@@ -17,7 +19,7 @@ namespace BibliotecaProject.Models
         public DateTime ExpirationDate { get; set; }
 
         [ForeignKey("Id_user")]
-        public Parent Parent { get; set; } 
+        public User User { get; set; }
 
     }
 }

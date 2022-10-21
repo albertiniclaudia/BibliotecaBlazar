@@ -44,7 +44,7 @@ namespace BibliotecaProject.Controllers
 
             bibliotecaDbContext.SaveChanges();
 
-            return Redirect("https://localhost:7190/Dashboard/ListOfBooks");
+            return Redirect("https://localhost:7190/Librarian/ListOfBooks");
 
         }
         public IActionResult HomeLibrarian()
@@ -52,6 +52,7 @@ namespace BibliotecaProject.Controllers
             return View();
 
         }
+
         [HttpPost]
         public IActionResult AddBooks(string title, string author, string publishingHouse, int numberOfCopy, string typeOfBooks, string description, string isbn)
         {
@@ -120,45 +121,47 @@ namespace BibliotecaProject.Controllers
         }
 
 
-        [HttpPost]
-        public IActionResult AddUser(string Name, string Surname, string ResidentialAddress, string FiscalCode, string Email, string PhoneNumber, string Type, string Emissary, DateTime ExpirationDate, string Password, int Age)
-        {
+        /*   [HttpPost]
+              public IActionResult AddUser(string Name, string Surname, string ResidentialAddress, string FiscalCode, string Email, string PhoneNumber, string Type, string Emissary, DateTime ExpirationDate, string Password, int Age)
+              {
 
-            var user = new User()
-            {
-                Name = Name,
-                Surname = Surname,
-                ResidentialAddress = ResidentialAddress,
-                FiscalCode = FiscalCode,
-                PhoneNumber = PhoneNumber,
-                Email = Email,
-                Password = Password,
-                Role = "User"
+                 var user = new User()
+                  {
+                      Name = Name,
+                      Surname = Surname,
+                      ResidentialAddress = ResidentialAddress,
+                      FiscalCode = FiscalCode,
+                      PhoneNumber = PhoneNumber,
+                      Email = Email,
+                      Password = Password,
+                      Role = "User"
 
-            };
+                  };
 
-            var identityCard = new IdentityCard()
-            {
+                  var identityCard = new IdentityCard()
+                  {
 
-                Type = Type,
-                Emissary = Emissary,
-                ExpirationDate = ExpirationDate
+                      Type = Type,
+                      Emissary = Emissary,
+                      ExpirationDate = ExpirationDate
 
-            };
+                  };
 
 
-            bibliotecaDbContext.Users.Add(user);
+                  bibliotecaDbContext.Users.Add(user);
 
-            bibliotecaDbContext.SaveChanges();
+                  bibliotecaDbContext.SaveChanges();
 
-            bibliotecaDbContext.IdentityCards.Add(identityCard);
+                  bibliotecaDbContext.IdentityCards.Add(identityCard);
 
-            identityCard.Id_user = user.Id;
+                  identityCard.Id_user = user.Id;
 
-            bibliotecaDbContext.SaveChanges();
+                  bibliotecaDbContext.SaveChanges();
 
-            return Redirect("https://localhost:7190/Dashboard");
+                  return Redirect("https://localhost:7190/Dashboard");
 
-        }
+
+
+      }*/
     }
 }

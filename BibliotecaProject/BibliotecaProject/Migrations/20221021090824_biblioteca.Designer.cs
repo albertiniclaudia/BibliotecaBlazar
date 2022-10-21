@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BibliotecaProject.Migrations
 {
     [DbContext(typeof(BibliotecaDbContext))]
-    [Migration("20221017103914_biblioteca")]
+    [Migration("20221021090824_biblioteca")]
     partial class biblioteca
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,6 +44,10 @@ namespace BibliotecaProject.Migrations
                         .IsRequired()
                         .HasMaxLength(13)
                         .HasColumnType("nvarchar(13)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("NumberOfCopy")
                         .HasColumnType("int");
@@ -80,6 +84,9 @@ namespace BibliotecaProject.Migrations
 
                     b.Property<DateTime>("ExpirationDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid>("Id_parent")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("Id_user")
                         .HasColumnType("uniqueidentifier");
@@ -152,9 +159,8 @@ namespace BibliotecaProject.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("Id_user")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -170,9 +176,9 @@ namespace BibliotecaProject.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Parents");
+                    b.HasIndex("Id_user");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Parent");
+                    b.ToTable("Parents");
                 });
 
             modelBuilder.Entity("BibliotecaProject.Models.PositionBook", b =>
@@ -246,10 +252,16 @@ namespace BibliotecaProject.Migrations
 
             modelBuilder.Entity("BibliotecaProject.Models.User", b =>
                 {
-                    b.HasBaseType("BibliotecaProject.Models.Parent");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Age")
                         .HasColumnType("int");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -272,18 +284,20 @@ namespace BibliotecaProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasDiscriminator().HasValue("User");
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("BibliotecaProject.Models.IdentityCard", b =>
                 {
-                    b.HasOne("BibliotecaProject.Models.Parent", "Parent")
+                    b.HasOne("BibliotecaProject.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("Id_user")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Parent");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("BibliotecaProject.Models.Loan", b =>
@@ -294,7 +308,7 @@ namespace BibliotecaProject.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BibliotecaProject.Models.Parent", "Parent")
+                    b.HasOne("BibliotecaProject.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("ID_user")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -302,7 +316,7 @@ namespace BibliotecaProject.Migrations
 
                     b.Navigation("Book");
 
-                    b.Navigation("Parent");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("BibliotecaProject.Models.LoanQueue", b =>
@@ -313,13 +327,24 @@ namespace BibliotecaProject.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BibliotecaProject.Models.Parent", "User")
+                    b.HasOne("BibliotecaProject.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("ID_user")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Book");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("BibliotecaProject.Models.Parent", b =>
+                {
+                    b.HasOne("BibliotecaProject.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("Id_user")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });
@@ -337,13 +362,13 @@ namespace BibliotecaProject.Migrations
 
             modelBuilder.Entity("BibliotecaProject.Models.PurchaseQueue", b =>
                 {
-                    b.HasOne("BibliotecaProject.Models.Parent", "Parent")
+                    b.HasOne("BibliotecaProject.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("ID_user")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Parent");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("BibliotecaProject.Models.Book", b =>

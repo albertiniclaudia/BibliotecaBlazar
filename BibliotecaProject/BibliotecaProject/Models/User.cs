@@ -1,10 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BibliotecaProject.Models
 {
-    public class User : Parent
+    public class User
     {
-      
+
+        [Key]
+        public Guid Id { get; set; }
+
+        public string City { get; set; }
+
         public string Role { get; set; }
 
         public int Age { get; set; }
@@ -14,6 +20,7 @@ namespace BibliotecaProject.Models
         [DataType(DataType.Password)]
         public string Password { get; set;}
 
+        [Required]
         [EmailAddress]
         public string Email { get; set; }
 
@@ -21,7 +28,6 @@ namespace BibliotecaProject.Models
 
         public string FiscalCode { get; set; }
 
-        //public User Parent { get; set; }  
 
     }
 }

@@ -1,9 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BibliotecaProject.Database;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BibliotecaProject.Controllers
 {
     public class BibliotecarioController : Controller
     {
+
+        private readonly BibliotecaDbContext bibliotecaDbContext;
+
+        public BibliotecarioController(BibliotecaDbContext bibliotecaDbContext)
+        {
+            this.bibliotecaDbContext = bibliotecaDbContext;
+        }
+
         public IActionResult Purchase()
         {
             return View();
@@ -13,5 +22,6 @@ namespace BibliotecaProject.Controllers
 			return View();
 
 		}
-	}
+
+    }
 }

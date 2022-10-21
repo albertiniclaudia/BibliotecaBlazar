@@ -1,24 +1,19 @@
 ﻿@model IEnumerable<Book>
 <div>
     <div class="row mb-3">
-        <div class="col-12 mb-3">
-            <h1>I Libri all'interno della tua biblioteca</h1>
+        <div class="col-12 mb-3 mt-3">
+            <h1 style="text-align:center;">I Libri all'interno della tua biblioteca</h1>
         </div> 
         
         <div class="col-2">
-            <label for="typeOfBooks">Type Of Books Filter</label>
-            <select class="btn btn-primary" form="merg" name="typeOfBooks" id="typeOfBooks">
+            <label for="typeOfBooks" class="ms-5">Type Of Books Filter</label>
+            <select class="btn btn-primary ms-5" form="merg" name="typeOfBooks" id="typeOfBooks">
                     <option value="" selected>Seleziona</option>
-                    <option value=" giallo">Giallo</option>
+                    <option value="giallo">Giallo</option>
                     <option value="narrativa">Narrativa</option>
                     <option value="horror">Horror</option>
                     <option value="rosa">Rosa</option>
                     <option value="avventura">Avventura</option>
-                @if (!string.IsNullOrEmpty(@ViewBag.parameter1))
-                {
-                    <option value=@ViewBag.parameter1 selected hidden>@ViewBag.parameter1</option>
-
-                }
             </select>
         </div>
         <div class="col-2">
@@ -27,11 +22,6 @@
                 <option value="" selected>Seleziona</option>
                 <option value="mondatori">Mondatori</option>
                 <option value="Universal">Universal</option>
-                @if (!string.IsNullOrEmpty(@ViewBag.parameter2))
-                {
-                  <option value=@ViewBag.parameter2 selected hidden>@ViewBag.parameter2</option>
-                }
-                
                 </select>
         </div>
         <div class="col-1"></div>
@@ -94,11 +84,14 @@
 
                 $("table tr").each(function(result){
 
-                    typeOfBook = $(this).find("th:nth-child(4)").text();
+                     typeOfBook = $(this).find("th:nth-child(4)").text();
+
+                    publishingHouse = $(this).find("th:nth-child(3)").text();
 
                     if(result !== 0){
 
-                        if (typeOfBook.indexOf(typeOfBookValue) !== 0 && typeOfBook.toLowerCase().indexOf(typeOfBookValue.toLowerCase()) < 0) {
+                        if ((typeOfBook.toLowerCase().indexOf(typeOfBookValue.toLowerCase()) < 0)
+                            || (publishingHouseValue   && publishingHouseValue !== "" && publishingHouse.toLowerCase().indexOf(publishingHouseValue.toLowerCase()) < 0)) {
                              
                              $(this).hide();
 
@@ -123,19 +116,23 @@
 
                     publishingHouse = $(this).find("th:nth-child(3)").text();
 
+                    typeOfBook = $(this).find("th:nth-child(4)").text();
+
                     if(result !== 0){
 
-                         if(publishingHouse.indexOf(publishingHouseValue) !== 0 && publishingHouse.toLowerCase().indexOf(publishingHouseValue.toLowerCase()) < 0){
+                         if((publishingHouse.toLowerCase().indexOf(publishingHouseValue.toLowerCase()) < 0)
+                            || (typeOfBookValue  && typeOfBookValue !== ""  && typeOfBook.toLowerCase().indexOf(typeOfBookValue.toLowerCase()) < 0)) {
 
                              $(this).hide();
 
                          }else{
 
+
                              $(this).show();
                          }
 
 
-                    }
+                     }
 
                 });
 
@@ -161,11 +158,9 @@
 
                            publishingHouse = $(this).find("th:nth-child(3)").text();
 
-                           if (title.indexOf(searchValue) !== 0 && title.toLowerCase().indexOf(searchValue.toLowerCase()) < 0 
-                                 || typeOfBook.indexOf(typeOfBookValue) !== 0 && typeOfBook.toLowerCase().indexOf(typeOfBookValue.toLowerCase()) < 0 || 
-                                 (typeOfBook.indexOf(typeOfBookValue) === 0 && typeOfBook.toLowerCase().indexOf(typeOfBookValue.toLowerCase()) > -1 
-                                 && publishingHouse.indexOf(publishingHouseValue) !== 0
-                                 && publishingHouse.toLowerCase().indexOf(publishingHouseValue.toLowerCase()) < 0)) {
+                           if ((title.toLowerCase().indexOf(searchValue.toLowerCase()) < 0)
+                               || (typeOfBookValue && typeOfBookValue !== ""  && typeOfBook.toLowerCase().indexOf(typeOfBookValue.toLowerCase()) < 0)
+                               || (publishingHouseValue   && publishingHouseValue !== "" && publishingHouse.toLowerCase().indexOf(publishingHouseValue.toLowerCase()) < 0)) {
                                 
                                     $(this).hide();
 

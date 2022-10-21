@@ -23,7 +23,7 @@ namespace BibliotecaProject.Models
         public Book Book { get; set; }
 
         [ForeignKey("ID_user")]
-        public Parent Parent { get; set; }
+        public User User { get; set; }
 
     }
 }

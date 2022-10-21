@@ -16,6 +16,7 @@ namespace BibliotecaProject.Migrations
                     Id_book = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Author = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PublishingHouse = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     NumberOfCopy = table.Column<int>(type: "int", nullable: false),
                     TypeOfBooks = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
@@ -28,24 +29,21 @@ namespace BibliotecaProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Parents",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Role = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Age = table.Column<int>(type: "int", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ResidentialAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FiscalCode = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Role = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Age = table.Column<int>(type: "int", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ResidentialAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FiscalCode = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Parents", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -76,6 +74,7 @@ namespace BibliotecaProject.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Id_user = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id_parent = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Emissary = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ExpirationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -84,9 +83,9 @@ namespace BibliotecaProject.Migrations
                 {
                     table.PrimaryKey("PK_IdentityCards", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_IdentityCards_Parents_Id_user",
+                        name: "FK_IdentityCards_Users_Id_user",
                         column: x => x.Id_user,
-                        principalTable: "Parents",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -111,9 +110,9 @@ namespace BibliotecaProject.Migrations
                         principalColumn: "Id_book",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Loan_Parents_ID_user",
+                        name: "FK_Loan_Users_ID_user",
                         column: x => x.ID_user,
-                        principalTable: "Parents",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -137,9 +136,30 @@ namespace BibliotecaProject.Migrations
                         principalColumn: "Id_book",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_LoanQueues_Parents_ID_user",
+                        name: "FK_LoanQueues_Users_ID_user",
                         column: x => x.ID_user,
-                        principalTable: "Parents",
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Parents",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id_user = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Parents", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Parents_Users_Id_user",
+                        column: x => x.Id_user,
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -159,9 +179,9 @@ namespace BibliotecaProject.Migrations
                 {
                     table.PrimaryKey("PK_PurchaseQueues", x => x.Id_purchaseQueue);
                     table.ForeignKey(
-                        name: "FK_PurchaseQueues_Parents_ID_user",
+                        name: "FK_PurchaseQueues_Users_ID_user",
                         column: x => x.ID_user,
-                        principalTable: "Parents",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -192,6 +212,11 @@ namespace BibliotecaProject.Migrations
                 column: "ID_user");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Parents_Id_user",
+                table: "Parents",
+                column: "Id_user");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PositionBooks_ID_book",
                 table: "PositionBooks",
                 column: "ID_book");
@@ -214,6 +239,9 @@ namespace BibliotecaProject.Migrations
                 name: "LoanQueues");
 
             migrationBuilder.DropTable(
+                name: "Parents");
+
+            migrationBuilder.DropTable(
                 name: "PositionBooks");
 
             migrationBuilder.DropTable(
@@ -223,7 +251,7 @@ namespace BibliotecaProject.Migrations
                 name: "Books");
 
             migrationBuilder.DropTable(
-                name: "Parents");
+                name: "Users");
         }
     }
 }

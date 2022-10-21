@@ -28,7 +28,7 @@ namespace BibliotecaProject.Models
         public string? ISBN { set; get; }
 
         [ForeignKey("ID_user")]
-        public Parent Parent { get; set; }
+        public User User { get; set; }
 
     }
 }

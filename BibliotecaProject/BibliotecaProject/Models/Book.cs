@@ -17,6 +17,9 @@ namespace BibliotecaProject.Models
         public string Author { get; set; }
 
         [Required]
+        public string ImageUrl { get; set; }
+
+        [Required]
         [MaxLength(100)]
         public string PublishingHouse { get; set; }
 
