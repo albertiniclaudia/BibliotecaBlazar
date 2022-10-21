@@ -89,7 +89,7 @@ namespace BibliotecaProject.Controllers
 		public IActionResult Index(string email, string password)
 		{	
 			_http.HttpContext.Session.SetString("email", email);
-			var user = bibliotecaDbContext.Users.Where(u => u.Email == "lucagiuss@gmail.com");
+			var user = bibliotecaDbContext.Users.Where(u => u.Email == email);
 			if(user.FirstOrDefault() != null)
 			{
 				if(user.FirstOrDefault().Role == "Admin")
