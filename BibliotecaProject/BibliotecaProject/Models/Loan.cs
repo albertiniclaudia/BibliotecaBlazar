@@ -8,13 +8,10 @@ namespace BibliotecaProject.Models
         [Key]
         public Guid Id_loan { get; set; }
 
-        [Required]
         public DateTime RentalStartData { get; set; }
 
-        [Required] 
         public DateTime RentalEndData { get; set; }
-
-        
+   
         public Guid ID_Book { get; set; }
 
         public Guid ID_user { get; set; }

@@ -10,6 +10,7 @@ namespace BibliotecaProject.Controllers
 
         public BibliotecarioController(BibliotecaDbContext bibliotecaDbContext)
         {
+            
             this.bibliotecaDbContext = bibliotecaDbContext;
         }
 
@@ -21,7 +22,7 @@ namespace BibliotecaProject.Controllers
 		{
 			return View();
 
-		}
+		} 
 
     }
 }

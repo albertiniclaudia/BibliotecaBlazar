@@ -10,15 +10,17 @@ namespace BibliotecaProject.Controllers
 
         public AdminController(BibliotecaDbContext bibliotecaDbContext)
         {
-
+            
             this.bibliotecaDbContext = bibliotecaDbContext;
 
         }
+
         public IActionResult HomeAdmin()
         {
             return View();
 
         }
+
         public IActionResult OperatorsList()
         {
 
@@ -27,7 +29,8 @@ namespace BibliotecaProject.Controllers
             return View(query);
 
         }
-        [HttpGet]
+
+       [HttpGet]
         public IActionResult EditAdmin(Guid id)
         {
 
@@ -39,6 +42,7 @@ namespace BibliotecaProject.Controllers
             return View(query);
 
         }
+
         [HttpPost]
         public IActionResult EditAdmin(string Name, string Surname, string Email, string Role) {
 

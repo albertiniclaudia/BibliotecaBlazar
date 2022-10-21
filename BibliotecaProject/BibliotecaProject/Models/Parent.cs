@@ -9,7 +9,7 @@ namespace BibliotecaProject.Models
         [Key]
         public Guid Id { get; set; }
 
-        public Guid Id_user { get; set; }
+        public Guid ID_user { get; set; }
 
         public string Name { get; set; }
 
@@ -17,7 +17,7 @@ namespace BibliotecaProject.Models
 
         public string Surname { get; set; }
 
-        [ForeignKey("Id_user")]
+        [ForeignKey("ID_user")]
         public User User { get; set; }
 
     }

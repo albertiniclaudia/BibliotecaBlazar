@@ -6,11 +6,13 @@ using Microsoft.Extensions.Options;
 using NuGet.Versioning;
 using System.Net.Mail;
 using System.Net;
-//using System.Diagnostics;
+using System.Diagnostics;
+
 namespace BibliotecaProject.Controllers
 {
     public class HomeController : Controller
     {
+		
         private readonly ILogger<HomeController> _logger;
 		public readonly BibliotecaDbContext bibliotecaDbContext;
 		private readonly IHttpContextAccessor _http;
@@ -42,6 +44,7 @@ namespace BibliotecaProject.Controllers
         {
             return View();
         }
+
 		public IActionResult CatalogoLibri()
 		{
 
@@ -74,18 +77,18 @@ namespace BibliotecaProject.Controllers
 		[HttpPost]
 		public IActionResult RecuperoPassword(string email)
 		{
-			/*var smtpClient = new SmtpClient("smtp.gmail.com")
+			var smtpClient = new SmtpClient("smtp.gmail.com")
 			{
 				Port = 587,
 				Credentials = new NetworkCredential(),
 				EnableSsl = true,
 			};
 
-			smtpClient.Send(email, email , "subject", "body");*/
+			smtpClient.Send(email, email , "subject", "body");
 			return View("Index");
 		}
 
-        /*	[HttpPost]
+       	[HttpPost]
 		public IActionResult Index(string email, string password)
 		{
 			
@@ -110,13 +113,13 @@ namespace BibliotecaProject.Controllers
 					return View("../User/HomeUser");
 				}
 			}
-			return View("Index");/*
+			return View("Index");
 			_http.HttpContext.Session.SetString("email", email);
 			_http.HttpContext.Session.SetString("name", "Luca");
 			_http.HttpContext.Session.SetString("role", "Admin");
 			return View("../User/HomeUser");
 
-		} */
+		} 
 
     }
 }

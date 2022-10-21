@@ -6,6 +6,7 @@ namespace BibliotecaProject.Controllers
 {
     public class LibrarianController : Controller
     {
+       
         public readonly BibliotecaDbContext bibliotecaDbContext;
 
         public LibrarianController(BibliotecaDbContext bibliotecaDbContext)
@@ -88,7 +89,7 @@ namespace BibliotecaProject.Controllers
             return View(query);
 
         }
-        [HttpPost]
+       [HttpPost]
         public IActionResult EditBooks(string Title, string Author, string PublishingHouse, int NumberOfCopy, string TypeOfBooks, string Description, string ISBN)
         {
 
@@ -121,7 +122,7 @@ namespace BibliotecaProject.Controllers
         }
 
 
-        /*   [HttpPost]
+             [HttpPost]
               public IActionResult AddUser(string Name, string Surname, string ResidentialAddress, string FiscalCode, string Email, string PhoneNumber, string Type, string Emissary, DateTime ExpirationDate, string Password, int Age)
               {
 
@@ -154,7 +155,7 @@ namespace BibliotecaProject.Controllers
 
                   bibliotecaDbContext.IdentityCards.Add(identityCard);
 
-                  identityCard.Id_user = user.Id;
+                  identityCard.ID_user = user.Id;
 
                   bibliotecaDbContext.SaveChanges();
 
@@ -162,6 +163,6 @@ namespace BibliotecaProject.Controllers
 
 
 
-      }*/
+      }
     }
 }

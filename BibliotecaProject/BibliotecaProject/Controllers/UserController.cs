@@ -9,6 +9,7 @@ namespace BibliotecaProject.Controllers
 {
     public class UserController : Controller
     {
+       
 		private readonly ILogger<UserController> _logger;
 		public readonly BibliotecaDbContext bibliotecaDbContext;
 		private readonly IHttpContextAccessor _http;
@@ -20,7 +21,7 @@ namespace BibliotecaProject.Controllers
         {
 			UserModel model = new UserModel();
 			model.user = bibliotecaDbContext.Users.Where(u => u.Email == _http.HttpContext.Session.GetString("email")).FirstOrDefault();
-			model.getLoanData = (from l in bibliotecaDbContext.Loan
+			model.getLoanData = (from l in bibliotecaDbContext.Loans
 								 from u in bibliotecaDbContext.Users
 								 where l.ID_user == u.Id
 								 select l).ToList();
@@ -64,14 +65,14 @@ namespace BibliotecaProject.Controllers
             IndexModel model = new IndexModel();
 
 
-            model.getLoanData = (from l in bibliotecaDbContext.Loan
+            model.getLoanData = (from l in bibliotecaDbContext.Loans
                                  from u in bibliotecaDbContext.Users
                                  where l.ID_user == u.Id
                                  select l).ToList();
 
             model.getBookData = (from b in bibliotecaDbContext.Books
                                  from u in bibliotecaDbContext.Users
-                                 from l in bibliotecaDbContext.Loan
+                                 from l in bibliotecaDbContext.Loans
                                  where l.ID_Book == b.Id_book && l.ID_user == u.Id
                                  select b).ToList();
             return View(model);
