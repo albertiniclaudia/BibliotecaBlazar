@@ -26,5 +26,8 @@ namespace BibliotecaProject.Models
         public string ISBN { set; get; }
 
 
+        public ICollection<PositionBook> PositionBook { get; set; }
+
+
     }
 }

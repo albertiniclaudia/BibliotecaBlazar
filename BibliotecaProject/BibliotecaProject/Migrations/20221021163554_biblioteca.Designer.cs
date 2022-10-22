@@ -4,6 +4,7 @@ using BibliotecaProject.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BibliotecaProject.Migrations
 {
     [DbContext(typeof(BibliotecaDbContext))]
-    partial class BibliotecaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221021163554_biblioteca")]
+    partial class biblioteca
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -237,9 +239,6 @@ namespace BibliotecaProject.Migrations
 
                     b.Property<int?>("Age")
                         .HasColumnType("int");
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()

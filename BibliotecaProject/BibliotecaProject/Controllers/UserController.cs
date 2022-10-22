@@ -1,6 +1,4 @@
 ﻿using BibliotecaProject.Database;
-using BibliotecaProject.Models;
-using BibliotecaProject.Database;
 using Microsoft.AspNetCore.Mvc;
 using BibliotecaProject.Models;
 using static System.Net.WebRequestMethods;
