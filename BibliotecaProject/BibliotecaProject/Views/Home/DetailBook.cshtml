@@ -1,4 +1,8 @@
-﻿@model IEnumerable<Book>
+﻿@page
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor Http
+@model IEnumerable<Book>
+
 <div>
     
     @foreach(var item in Model){
@@ -15,10 +19,8 @@
         <h6 class="card-subtitle mb-2 text-muted">ISBN:@item.ISBN</h6>
        
                 <h2>Descrizione:</h2>
-                <p>@item.Description</p> 
-
-     
-        <button class="btn btn-success">Prenota</button>
+                <p>@item.Description</p>
+                <a class="btn btn-primary" asp-controller="Home" asp-action="Check" asp-route-id=@item.Id_book>Prenota</a>
 
      </div>
      </div>

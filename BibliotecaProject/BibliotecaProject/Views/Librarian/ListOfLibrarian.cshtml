@@ -1,0 +1,36 @@
+﻿@model IEnumerable<User>
+<div>
+    <div class="row mb-3">
+        <div class="col-12 mb-3 mt-3">
+            <h1 style="text-align:center;">La Lista Dei Bibliotecari</h1>
+        </div>
+
+        <table class="table">
+            <thead>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>City</th>
+            <th>ResidentialAddress</th>
+            <th>PhoneNumber</th>
+            <th class="span-2">Editing of Librarian</th>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th scope="row">@item.Name</th>
+                    <th scope="row">@item.Surname</th>
+                    <th scope="row">@item.City</th>
+                    <th scope="row">@item.ResidentialAddress</th>
+                    <th scope="row">@item.PhoneNumber</th>
+                    <th>
+                        <a class="btn  btn-warning" asp-controller="Librarian" asp-action="EditBooks" asp-route-id=@item.Id>Edit</a>
+                        @Html.ActionLink("Delete","DeleteBooks",new {id = @item.Id}, new { @class = "btn btn-danger"})
+                    </th>
+
+                </tr>
+            }
+        </table>
+
+    </div>
+
+</div>

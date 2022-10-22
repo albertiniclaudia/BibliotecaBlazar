@@ -9,6 +9,7 @@ namespace BibliotecaProject.Models
     {
         public User User { get; set; }
 		public IEnumerable<Loan> Loans { get; set; }
-		public IEnumerable<Loan> EndedLoans { get; set; }
+        public IEnumerable<Book>  Books { get; set; }
+        public IEnumerable<Loan> EndedLoans { get; set; }
 	}
 }

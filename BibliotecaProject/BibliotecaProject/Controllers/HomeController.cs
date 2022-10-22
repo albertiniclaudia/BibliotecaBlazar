@@ -7,6 +7,8 @@ using NuGet.Versioning;
 using System.Net.Mail;
 using System.Net;
 using System.Diagnostics;
+using System.Collections;
+using System.Text.RegularExpressions;
 
 namespace BibliotecaProject.Controllers
 {
@@ -16,7 +18,7 @@ namespace BibliotecaProject.Controllers
         private readonly ILogger<HomeController> _logger;
 		public readonly BibliotecaDbContext bibliotecaDbContext;
 		private readonly IHttpContextAccessor _http;
-
+		
 		public HomeController(BibliotecaDbContext bibliotecaDbContext, IHttpContextAccessor httpContextAccessor)
 		{
 
@@ -27,6 +29,7 @@ namespace BibliotecaProject.Controllers
 		public IActionResult Index()
         {
 			return View();
+
         }
 
 
@@ -47,21 +50,37 @@ namespace BibliotecaProject.Controllers
 
 		public IActionResult CatalogoLibri()
 		{
+			var query = bibliotecaDbContext.Books.Where(a => !bibliotecaDbContext.Loans.Select(b => b.ID_Book).Contains(a.Id_book));
 
-			var query = from b in bibliotecaDbContext.Books
-						select b;
+			/*(from b in bibliotecaDbContext.Books
+            from l in bibliotecaDbContext.Loans
+            where b.Id_book != l.ID_Book
+            select b);*/
 
-			return View(query);
-		}
 
-		public IActionResult HomeAdmin()
+
+            return View(query);
+
+        }
+
+        public IActionResult HomeAdmin()
 		{
 			return View();
 		}
 
+		public IActionResult LogOut()
+		{
+
+			_http.HttpContext.Session.Remove("Id_user");
+            _http.HttpContext.Session.Remove("name");
+            _http.HttpContext.Session.Remove("role");
+
+			return RedirectToAction("Index");
+        }
+
+		[HttpGet]
 		public IActionResult DetailBook(Guid id)
         {
-
 			var query = from b in bibliotecaDbContext.Books
 						where b.Id_book == id
 						select b;
@@ -74,7 +93,43 @@ namespace BibliotecaProject.Controllers
 			return View();
 		}
 
-		[HttpPost]
+
+        [HttpGet]
+        public IActionResult Check(Guid Id)
+        {
+            Guid id_user = Guid.Parse(_http.HttpContext.Session.GetString("Id_user"));
+
+
+            var query = (from l in bibliotecaDbContext.Loans
+                         where l.ID_user == id_user
+						 select l).Count();
+
+            if (query >= 3)
+            {
+				return Redirect("https://localhost:7190/User/RenderBookFirst");
+			}
+            else
+            {
+
+                var loan = new Loan()
+                {
+
+                    ID_user = id_user,
+                    ID_Book = Id,
+                    RentalStartData = DateTime.Now,
+                    RentalEndData = DateTime.Now.AddDays(30),
+
+                };
+
+                bibliotecaDbContext.Loans.Add(loan);
+
+                bibliotecaDbContext.SaveChanges();
+
+				return Redirect("https://localhost:7190/User/UserProfile");
+            }
+
+        }
+        [HttpPost]
 		public IActionResult RecuperoPassword(string email)
 		{
 			var client = new SmtpClient("smtp.mailtrap.io", 2525)
@@ -100,13 +155,14 @@ namespace BibliotecaProject.Controllers
 				}
 				else if(user.FirstOrDefault().Role == "Librarian")
 				{
-					_http.HttpContext.Session.SetString("role", "Librarian");
-					return View("../Bibliotecario/HomeLibrarian");
+                    _http.HttpContext.Session.SetString("role", "Librarian");
+					return View("../Librarian/HomeLibrarian");
 				}
 				else
 				{
 					_http.HttpContext.Session.SetString("name", user.FirstOrDefault().Name);
-					_http.HttpContext.Session.SetString("role", "User");
+                    _http.HttpContext.Session.SetString("Id_user",Convert.ToString(user.FirstOrDefault().Id));
+                    _http.HttpContext.Session.SetString("role", "User");
 					return View("../User/HomeUser");
 				}
 			}

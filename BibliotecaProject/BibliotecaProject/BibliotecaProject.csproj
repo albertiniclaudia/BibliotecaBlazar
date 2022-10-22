@@ -13,9 +13,9 @@
   <ItemGroup>
     <None Remove="Controllers\NewFile.txt" />
     <None Remove="Views\Librarian\eddde" />
-    <None Remove="Views\Librarian\NewFile.txt" />
     <None Remove="Views\Home\DetailBook" />
-    <None Remove="Views\Home\NewFile.txt" />
+    <None Remove="Views\Librarian\NewFile.txt" />
+    <None Remove="Views\User\NewFile.txt" />
   </ItemGroup>
 
   <ItemGroup>

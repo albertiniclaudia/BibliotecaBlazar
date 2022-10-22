@@ -13,13 +13,19 @@
             </h3>
         </div>
         <div>
-                <a class="btn btn-outline-success b" asp-area="" asp-controller="Librarian" asp-action="AddBooks"><span>  Inserisci libro  </span></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="Librarian" asp-action="AddBooks"><span>  Inserisci libro  </span></a>
             <a class="btn btn-outline-success b" asp-area="" asp-controller="Librarian" asp-action="AddUser"><span>  Registra utente  </span></a>
-            <a class="btn btn-outline-success b" asp-area="" asp-controller="Admin" asp-action="AddAdmin"><span>  Registra amministratore o bibliotecario  </span></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="Admin" asp-action="AddAdmin"><span>  Registra admin.. o bibl..  </span></a>
         </div>
         <div>
             <a class="btn btn-outline-success b" asp-area="" asp-controller="Librarian" asp-action="Purchase"><span>  Visualizza richieste libri  </span></a>
             <a class="btn btn-outline-success b" asp-area="" asp-controller="Home" asp-action="Index"><span>  Modifica dati  </span></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="Admin" asp-action="ListOfAdminLibrarian"><span>  Lista Admin e Bibliotecari  </span></a>
+        </div>
+        <div>
+                <a class="btn btn-outline-success b" asp-area="" asp-controller="Librarian" asp-action="ListOfBooks"><span>  Lista Libri  </span></a>
+                <a class="btn btn-outline-success b" asp-area="" asp-controller="Home" asp-action="CatalogoLibri"><span>  Catalogo Libri  </span></a>
+                <a class="btn btn-outline-success b" asp-area="" asp-controller="Home" asp-action="LogOut"><span>  Log Out  </span> </a>
         </div>
         </div>
     } else if (role == "User")

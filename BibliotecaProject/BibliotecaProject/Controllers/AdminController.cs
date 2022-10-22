@@ -21,14 +21,17 @@ namespace BibliotecaProject.Controllers
 
         }
 
-        public IActionResult OperatorsList()
+        public IActionResult ListOfAdminLibrarian()
         {
 
-            var query = from u in bibliotecaDbContext.Parents
+            var query = from u in bibliotecaDbContext.Users
+                        where u.Role == "Admin" || u.Role == "Librarian"
                         select u;
-            return View(query);
 
+            return View(query);
         }
+
+        
 
        [HttpGet]
         public IActionResult EditAdmin(Guid id)
@@ -47,7 +50,7 @@ namespace BibliotecaProject.Controllers
         public IActionResult EditAdmin(string Name, string Surname, string Email, string Role) {
 
             var query = from u in bibliotecaDbContext.Users
-                        where u.Name == Name && u.Surname == Surname && u.Email == Email
+                        where u.Email == Email
                         select u;
 
             foreach (var item in query)
@@ -61,20 +64,20 @@ namespace BibliotecaProject.Controllers
 
             bibliotecaDbContext.SaveChanges();
 
-            return Redirect("https://localhost:7190/admin/OperatorsList");
+            return Redirect("https://localhost:7190/Admin/ListOfAdminLibrarian");
         }
         public IActionResult DeleteAdmin(Guid id)
         {
 
-            var query = (from u in bibliotecaDbContext.Parents
+            var query = (from u in bibliotecaDbContext.Users
                          where u.Id == id
                          select u).FirstOrDefault();
 
-            bibliotecaDbContext.Parents.Remove(query);
+            bibliotecaDbContext.Users.Remove(query);
 
             bibliotecaDbContext.SaveChanges();
 
-            return Redirect("https://localhost:7190/admin/OperatorsList");
+            return Redirect("https://localhost:7190/Admin/ListOfAdminLibrarian");
 
         }
         public IActionResult AddAdmin()
@@ -98,7 +101,7 @@ namespace BibliotecaProject.Controllers
 
             bibliotecaDbContext.SaveChanges();
 
-            return Redirect("https://localhost:7190/HomeAdmin");
+            return Redirect("https://localhost:7190/Admin/HomeAdmin");
         }
 
         public IActionResult AddLibrarian()

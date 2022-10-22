@@ -1,4 +1,20 @@
-﻿@model IEnumerable<Book>
+﻿@model IndexModel
+
+@{
+
+    string[] storePosition = new string[100];
+    int count = 0;
+    foreach (var item2 in Model.getPosition)
+    {
+
+        storePosition[count] =  "Room: " + item2.Room + " Shelf: " + item2.Shelf + " Rack: " + item2.Rack + " Place: " + item2.Place;
+        count++;
+    }
+
+    count = 0;
+
+}
+
 <div>
     <div class="row mb-3">
         <div class="col-12 mb-3 mt-3">
@@ -40,24 +56,25 @@
             <th>Author</th>
             <th>Publishing House</th>
             <th>Type Of Book</th>
-            <th>Number Of Copy</th>
+            <th>Position</th>
             <th>ISBN</th>
             <th class="span-2">Editing of Books</th>
         </thead>
-        @foreach (var item in Model){
+        @foreach (var item in Model.getBookData){
             <tr>
                 <th scope="row">@item.Title</th>
                 <th scope="row">@item.Author</th>
                 <th scope="row">@item.PublishingHouse</th>
                 <th scope="row">@item.TypeOfBooks</th>
-                <th scope="row">@item.NumberOfCopy</th>
+                <th scope="row">@storePosition[count]</th>
                 <th scope="row">@item.ISBN</th>
                 <th>
                     <a class="btn  btn-warning" asp-controller="Librarian" asp-action="EditBooks" asp-route-id=@item.Id_book>Edit</a>
                     @Html.ActionLink("Delete","DeleteBooks",new {id = @item.Id_book}, new { @class = "btn btn-danger"})
                 </th>
-
+                
             </tr>
+            count++;
         }
     </table>
 

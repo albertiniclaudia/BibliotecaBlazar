@@ -8,31 +8,31 @@
             <div class="mx-auto bg-success p-2 text-dark bg-opacity-50">
                 <h2>Inserisci i dati per la registrazione di un nuovo utente</h2>
             </div>
-
+            <form method="post">
             <div class="input-group input-group-sm mb-3" required>
                 <span class="input-group-text" id="inputGroup-sizing-sm">Nome</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input type="text" class="form-control" aria-label="Sizing example input" name="Name" aria-describedby="inputGroup-sizing-sm">
                 <span class="input-group-text" id="inputGroup-sizing-sm">Cognome</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input type="text" class="form-control" aria-label="Sizing example input" name="Surname" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group input-group-sm mb-3" required>
                 <span class="input-group-text" id="inputGroup-sizing-sm">Indirizzo di redisenza</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input type="text" class="form-control" aria-label="Sizing example input" name="ResidentialAddress" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group input-group-sm mb-3" required>
                 <span class="input-group-text" id="inputGroup-sizing-sm">Codice Fiscale</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input type="text" class="form-control" aria-label="Sizing example input" name="FiscalCode" aria-describedby="inputGroup-sizing-sm">
                 <span class="input-group-text" id="inputGroup-sizing-sm">Numero di Telefono</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input type="text" class="form-control" aria-label="Sizing example input" name="PhoneNumber" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <div class="input-group input-group-sm mb-3" required>
                 <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
-                <input type="text" class="form-control" id="staticEmail2" placeholder="email@example.com">
+                <input type="text" class="form-control" id="staticEmail2" name="Email" placeholder="email@example.com">
                 <span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
-                <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+                <input type="password" class="form-control" id="inputPassword2" name="Password" placeholder="Password">
             </div>
 
             <div class="form-check justify-content-end" >
@@ -42,17 +42,17 @@
 
             <div class="input-group input-group-sm mb-3" required>
                 <label class="input-group-text" for="inputGroupSelect01">Documento d'identità</label>
-                <select class="form-select" id="inputGroupSelect01">
+                <select class="form-select" id="inputGroupSelect01" name="Type">
                     <option selected>Scegli...</option>
-                    <option value="1">Carta d'identità</option>
-                    <option value="2">Passaporto</option>
-                    <option value="3">Patente</option>
+                    <option value="IdentityCard">Carta d'identità</option>
+                    <option value="Pasport">Passaporto</option>
+                    <option value="DriverLicense">Patente</option>
                 </select>
             </div>
 
             <div class="input-group input-group-sm mb-3" required>
                 <span class="input-group-text" id="inputGroup-sizing-sm">Emittente</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input type="text" class="form-control" aria-label="Sizing example input" name="Emissary" aria-describedby="inputGroup-sizing-sm">
                 <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Data di scadenza</span>
                     <input type="date" name="ExpirationDate">
@@ -62,6 +62,7 @@
             <div class="button">
                 <button type="submit" class="btn btn-outline-success">Registrati</button>
             </div>
+            </form>
         </div>
     </div>
 }

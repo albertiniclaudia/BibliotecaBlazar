@@ -12,5 +12,11 @@ namespace BibliotecaProject.Models
 
         public IEnumerable<Loan> getLoanData { get; set; }
 
+        public IEnumerable<User> getUserData { get; set; }
+
+        public IEnumerable<PurchaseQueue> getPurchaseQueueData { get; set; }
+
+        public IEnumerable<PositionBook> getPosition { get; set; }
+
     }
 }

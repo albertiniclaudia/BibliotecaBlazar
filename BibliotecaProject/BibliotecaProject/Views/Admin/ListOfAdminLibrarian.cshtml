@@ -1,0 +1,133 @@
+﻿@model IEnumerable<User>
+<div>
+    <div class="row mb-3">
+        <div class="col-12 mb-3 mt-3">
+            <h1 style="text-align:center;">La lista Admin e Bibliotecario</h1>
+        </div>
+        <div class="col-2">
+            <label for="Role" class="ms-5">Role Filter</label>
+            <select class="btn btn-primary ms-5" form="merg" name="Role" id="Role">
+                <option value="" selected>Seleziona</option>
+                <option value="Admin">Admin</option>
+                <option value="Librarian">Librarian</option>
+            </select>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-3">
+            <input type="text" class="form-control" name="search" id="search" placeholder="search..." aria-label="Search">
+        </div>
+        <div class="col-2"></div>
+        <div class="col-2">
+            <a class="btn btn-success" asp-area="" asp-controller="Librarian" asp-action="AddBooks">Nuovo Libro</a>
+        </div>
+
+    </div>
+    <table class="table">
+        <thead>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th class="span-2">Editing</th>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.Name</th>
+                <th scope="row">@item.Surname</th>
+                <th scope="row">@item.Email</th>
+                <th scope="row">@item.Role</th>
+                <th>
+                    <a class="btn  btn-warning" asp-controller="Admin" asp-action="EditAdmin" asp-route-id=@item.Id>Edit</a>
+                    @Html.ActionLink("Delete","DeleteAdmin",new {id = @item.Id}, new { @class = "btn btn-danger"})
+                </th>
+
+            </tr>
+        }
+    </table>
+
+</div>
+
+@section Scripts{
+
+    <script>
+
+        $(document).ready(function () {
+
+            var roleValue;
+
+            @*var publishingHouseValue;*@
+
+            var role;
+
+           @* var publishingHouse;*@
+
+            $("#Role").change(function () {
+
+                roleValue = $("#Role").val();
+
+                $("table tr").each(function (result) {
+
+                    role = $(this).find("th:nth-child(4)").text();
+
+                    if (result !== 0) {
+
+                        if (role.toLowerCase().indexOf(roleValue.toLowerCase()) < 0) {
+
+                            $(this).hide();
+
+                        } else {
+
+                            $(this).show();
+                        }
+
+
+                    }
+
+                });
+
+
+            });
+
+
+            $("#search").keyup(function (e) {
+
+                if (e.keyCode != 46) {
+
+                    var searchValue = $(this).val();
+
+                }
+
+                $("table tr").each(function (results) {
+
+                    if (results !== 0) {
+
+                        var name = $(this).find("th:nth-child(1)").text();
+
+                        var email = $(this).find("th:nth-child(3)").text();
+
+                        role = $(this).find("th:nth-child(4)").text();
+
+                        if ((name.toLowerCase().indexOf(searchValue.toLowerCase()) < 0 && email.toLowerCase().indexOf(searchValue.toLowerCase()) < 0)
+                            || (roleValue && roleValue !== "" && role.toLowerCase().indexOf(roleValue.toLowerCase()) < 0)) {
+
+                            $(this).hide();
+
+                        } else {
+
+                            $(this).show();
+
+                        }
+
+
+                    }
+
+                });
+            });
+
+        });
+
+
+    </script>
+
+}

@@ -2,67 +2,56 @@
 @inject IHttpContextAccessor Http;
 @model Model2
 @{
-    <div class="row m-3 align-items-center" style="margin-left:5%, margin-right:auto%">
-        <div class="col-6 ">
-            <h1 class="text-center mb-3">Profilo di @Model.User.Name!</h1>
-            <div class="card mb-3">
-                <div class="card-body text-center">
+    <div class="row m-3 align-items-center">
+                <div class="col-6 ">
+                    <h1 class="text-center mb-3">Profilo di @Model.User.Name!</h1>
+                    <div class="card mb-3">
+                    <div class="card-body text-center">
                     <h3 class="card-title">Dati Utente</h3>
                     <h4 class="card-subtitle mb-2 text-muted">Nome : @Model.User.Name</h4>
                     <h5 class="card-subtitle mb-2 text-muted">Cognome : @Model.User.Surname</h5>
                     <h5 class="card-subtitle mb-2">Numero di Telefono : @Model.User.PhoneNumber</h5>
                     <h5 class="card-subtitle mb-2">Via : @Model.User.ResidentialAddress</h5>
                     <h5 class="card-subtitle mb-2">cf : @Model.User.FiscalCode</h5>
-                </div>
-            </div>
-        </div>
-        @foreach(var item in Model.Loans)
-        {
-            <div class="col-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Title : @item.Book.Title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Autore :  @item.Book.Author</h6>
-                        <h6 class="card-subtitle mb-2 text-muted">Genere :  @item.Book.TypeOfBooks</h6>
-                        <p class="card-text">Descrizione:  @item.Book.Description</p>
-                        <h6 class="card-subtitle mb-2 text-muted">ISBN:  @item.Book.ISBN</h6>
+                        </div>
                     </div>
                 </div>
-            </div>
+                @foreach(var item in Model.Books)
+        {
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Title : @item.Title</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Autore : @item.Author</h6>
+                                <h6 class="card-subtitle mb-2 text-muted">Genere :  @item.TypeOfBooks</h6>
+                                <p class="card-text">Descrizione:  @item.Description</p>
+                                <h6 class="card-subtitle mb-2 text-muted">ISBN:  @item.ISBN</h6>
+                            </div>
+                        </div>
+                    </div>
         }      
     </div>
     <div class="col-12">
-        <table class="table">
-        <thead>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Publishing House</th>
-        <th>ISBN</th>
-        <th>Data inizio Noleggio</th>
-        <th>Data fine Noleggio</th>
-        </thead>
-            @if(Model.EndedLoans.Count()==0)
+                <table class="table">
+                <thead>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Publishing House</th>
+                <th>ISBN</th>
+                <th>Data inizio Noleggio</th>
+                <th>Data fine Noleggio</th>
+                </thead>
+                    @if(Model.EndedLoans.Count()==0)
             {
-                <tr>
-                    <th scope="row">-</th>
-                    <th scope="row">-</th>
-                    <th scope="row">-</th>
-                    <th scope="row">-</th>
-                    <th scope="row">-</th>
-                    <th scope="row">-</th>
-                </tr>
+                        <tr>
+                            <th scope="row">-</th>
+                            <th scope="row">-</th>
+                            <th scope="row">-</th>
+                            <th scope="row">-</th>
+                            <th scope="row">-</th>
+                            <th scope="row">-</th>
+                        </tr>
             }
-            @foreach(var item in Model.EndedLoans)
-            {
-                <tr>
-                    <th scope="row">@item.Book.Title</th>
-                    <th scope="row">@item.Book.Author</th>
-                    <th scope="row">@item.Book.PublishingHouse</th>
-                    <th scope="row">@item.Book.ISBN</th>
-                    <th scope="row">@item.RentalStartData</th>
-                    <th scope="row">@item.RentalEndData</th>
-                </tr>
-            }
-    </table>
-</div>
+            </table>
+    </div>
 }

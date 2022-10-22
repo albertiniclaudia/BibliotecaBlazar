@@ -5,9 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using BibliotecaProject.Models;
 using static System.Net.WebRequestMethods;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BibliotecaProject.Controllers
 {
+
     public class UserController : Controller
     {
        
@@ -24,7 +26,11 @@ namespace BibliotecaProject.Controllers
 			string mail = _http.HttpContext.Session.GetString("email");
 			Model2 model = new Model2();
 			model.User = bibliotecaDbContext.Users.Where(u => u.Email == mail).FirstOrDefault();
-			model.Loans = bibliotecaDbContext.Loans.Where(u => u.ID_user == model.User.Id && u.RentalEndData == null).ToList();
+			model.Books = from b in bibliotecaDbContext.Books
+						  from l in bibliotecaDbContext.Loans
+						  where b.Id_book == l.ID_Book && l.ID_user == model.User.Id
+						  select b;
+			/*(IEnumerable<Loan>)bibliotecaDbContext.Loans.Join(bibliotecaDbContext.Books,b => b.ID_Book,p => p.Id_book,(b,p) => new { B = b, P = p}).Where(user => user.B.ID_user == model.User.Id && user.B.RentalEndData != null).ToList();*/
 			model.EndedLoans = bibliotecaDbContext.Loans.Where(u => u.ID_user == model.User.Id && u.RentalEndData != null).ToList();
 			return View(model);
         }
@@ -44,6 +50,40 @@ namespace BibliotecaProject.Controllers
 		{
 			return View();
 		}
+		public IActionResult RenderBookFirst()
+		{
+			return View();
+		}
+
+		[HttpGet]
+		public IActionResult InsertIntoLoan(Guid id)
+		{
+            Guid id_user = Guid.Parse(_http.HttpContext.Session.GetString("Id_user"));
+
+            var insert = new LoanQueue()
+			{
+				ID_book = id,
+				ID_user = id_user,
+				Date = DateTime.Now,
+
+			};
+
+			bibliotecaDbContext.LoanQueues.Add(insert);
+
+			bibliotecaDbContext.SaveChanges();
+
+			return Redirect("https://localhost:7190/Home/CatalogoLibri");
+
+        }
+
+		public IActionResult QueueBooks()
+		{
+			var query = bibliotecaDbContext.Books.GroupBy(x => x.Title).Select(y => y.First()).Distinct();
+
+            return View(query);
+
+		}
+
 
 		[HttpPost]
 		public void RequestBook(string Title, string Author, string PublishingHouse, string ISBN)

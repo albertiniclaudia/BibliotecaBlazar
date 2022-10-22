@@ -1,7 +1,9 @@
 ﻿@page
+@model IndexModel
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor Http
 @{
+    
     ViewBag.Title = "Home";
     string role = Http.HttpContext.Session.GetString("role");
     if(role == "Librarian")
@@ -15,32 +17,14 @@
         <div>
             <a class="btn btn-outline-success b" asp-area="" asp-controller="Librarian" asp-action="AddBooks"><span> Inserisci libro </span></a>
             <a class="btn btn-outline-success b" asp-area="" asp-controller="Librarian" asp-action="AddUser"><span>  Registra utente  </span></a>
-            <a class="btn btn-outline-success b" asp-area="" asp-controller="Librarian" asp-action="Purchase"><span>  Acquista libro  </span></a>
+            <a class="btn btn-outline-success b" asp-area="" asp-controller="Librarian" asp-action="ListOfBooks"><span>  Lista Libri </span></a>
         </div>
         <div>
-            <table class="table">
-                <thead>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Publishing House</th>
-                    <th>ISBN</th>
-                    <th>Utente Richiedente</th>
-                </thead>
-                <tr>
-                    <th scope="row">Divina Commedia</th>
-                    <th scope="row">Asdrubale</th>
-                    <th scope="row"></th>
-                    <th scope="row"></th>
-                    <th scope="row">Andrea Arturi</th>
-                </tr>
-                <tr>
-                    <th scope="row">Alice nel paese delle meraviglie</th>
-                    <th scope="row"></th>
-                    <th scope="row"></th>
-                    <th scope="row">1234556789123</th>
-                    <th scope="row">Michele Galimberti</th>
-                </tr>
-            </table>
+
+                <a class="btn btn-outline-success b" asp-area="" asp-controller="Librarian" asp-action="Purchase"><span>Libri da Acquistare</span></a>
+                <a class="btn btn-outline-success b" asp-area="" asp-controller="Librarian" asp-action="ReturnBook"><span>Restituisci Libro</span></a>
+                <a class="btn btn-outline-success b" asp-area="" asp-controller="Home" asp-action="CatalogoLibri"><span>  Catalogo Libri  </span></a>
+                <a class="btn btn-outline-success b" asp-area="" asp-controller="Home" asp-action="LogOut"><span>  Log Out  </span> </a>
         </div>
     </div>
     } else if(role == "Admin")
