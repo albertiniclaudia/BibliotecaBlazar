@@ -2,65 +2,84 @@
     ViewData["Title"] = "Inserimento utente";
     var ruolo = "Amministratore";
 }
-@if(ruolo == "Bibliotecario" || ruolo == "Amministratore"){
+@if (ruolo == "Bibliotecario" || ruolo == "Amministratore")
+{
     <div class=" mx-auto bg-success p-2 text-dark bg-opacity-25 " style="width: 50%; height: 50%;">
         <div>
             <div class="mx-auto bg-success p-2 text-dark bg-opacity-50">
                 <h2>Inserisci i dati per la registrazione di un nuovo utente</h2>
             </div>
-
-            <div class="input-group input-group-sm mb-3" required>
-                <span class="input-group-text" id="inputGroup-sizing-sm">Nome</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Cognome</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-
-            <div class="input-group input-group-sm mb-3" required>
-                <span class="input-group-text" id="inputGroup-sizing-sm">Indirizzo di redisenza</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-
-            <div class="input-group input-group-sm mb-3" required>
-                <span class="input-group-text" id="inputGroup-sizing-sm">Codice Fiscale</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Numero di Telefono</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            </div>
-
-            <div class="input-group input-group-sm mb-3" required>
-                <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
-                <input type="text" class="form-control" id="staticEmail2" placeholder="email@example.com">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
-                <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
-            </div>
-
-            <div class="form-check justify-content-end" >
-                <input class="form-check-input" type="checkbox" id="checked">
-                <label class="form-check-label" for="checked">Minorenne</label>
-            </div>
-
-            <div class="input-group input-group-sm mb-3" required>
-                <label class="input-group-text" for="inputGroupSelect01">Documento d'identità</label>
-                <select class="form-select" id="inputGroupSelect01">
-                    <option selected>Scegli...</option>
-                    <option value="1">Carta d'identità</option>
-                    <option value="2">Passaporto</option>
-                    <option value="3">Patente</option>
-                </select>
-            </div>
-
-            <div class="input-group input-group-sm mb-3" required>
-                <span class="input-group-text" id="inputGroup-sizing-sm">Emittente</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Data di scadenza</span>
-                    <input type="date" name="ExpirationDate">
+            <form method="post">
+                <div class="input-group input-group-sm mb-3" required>
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Nome</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Cognome</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                 </div>
-            </div>
 
-            <div class="button">
-                <button type="submit" class="btn btn-outline-success">Registrati</button>
+                <div class="input-group input-group-sm mb-3" required>
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Indirizzo di redisenza</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+
+                <div class="input-group input-group-sm mb-3" required>
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Codice Fiscale</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Numero di Telefono</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+
+                <div class="input-group input-group-sm mb-3" required>
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
+                    <input type="text" class="form-control" id="staticEmail2" placeholder="email@example.com">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
+                    <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+                </div>
+
+                <div class="form-check justify-content-end">
+                    <input class="form-check-input item" type="checkbox" id="checked">
+                    <label class="form-check-label" for="checked">Minorenne</label>
+                </div>
+
+                <div class="input-group input-group-sm mb-3" required>
+                    <label class="input-group-text" for="inputGroupSelect01">Documento d'identità</label>
+                    <select class="form-select" id="inputGroupSelect01">
+                        <option selected>Scegli...</option>
+                        <option value="1">Carta d'identità</option>
+                        <option value="2">Passaporto</option>
+                        <option value="3">Patente</option>
+                    </select>
+                </div>
+
+                <div class="input-group input-group-sm mb-3" required>
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Emittente</span>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Data di scadenza</span>
+                        <input type="date" name="ExpirationDate">
+                    </div>
+                </div>
+
+                <div class="button">
+                    <button type="submit" class="btn btn-outline-success">Registrati</button>
+                </div><br>
+            </form>
+            <div class="input-group input-group-sm mb-3 cost-box">
+                <div class="mx-auto bg-success p-2 text-dark bg-opacity-50">
+                    <p>Inserisci i dati di un maggiorenne</p>
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm"> Nome </span>
+                    <input type="text" class="form-control hide" aria - label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <span class="input-group-text" id="inputGroup-sizing-sm "> Cognome </span>
+                    <input type="text" class="form-control " aria - label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm"> Codice Fiscale </span>
+                    <input type="text" class="form-control hide" aria - label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <span class="input-group-text" id="inputGroup-sizing-sm"> Numero di Telefono </span>
+                    <input type="text" class="form-control hide" aria - label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
             </div>
         </div>
     </div>
@@ -68,17 +87,13 @@
 
 @section Scripts{
     <script>
-        if (checked = true) {
-            <div class="input-group input-group-sm mb-3" required >
-                <span class="input-group-text" id = "inputGroup-sizing-sm" > Nome < /span>
-                <input type = "text" class="form-control" aria - label="Sizing example input" aria - describedby="inputGroup-sizing-sm" >
-                <span class="input-group-text" id = "inputGroup-sizing-sm" > Cognome < /span>
-                 <input type = "text" class="form-control" aria - label="Sizing example input" aria - describedby="inputGroup-sizing-sm" >
-                 <span class="input-group-text" id = "inputGroup-sizing-sm" > Codice Fiscale < /span>
-                 <input type = "text" class="form-control" aria - label="Sizing example input" aria - describedby="inputGroup-sizing-sm" >
-                 <span class="input-group-text" id = "inputGroup-sizing-sm" > Numero di Telefono < /span>
-                 <input type = "text" class="form-control" aria - label="Sizing example input" aria - describedby="inputGroup-sizing-sm" >
-             </div>
-        }
+        $(".cost-box").hide();
+        $(".item").click(function () {
+            if ($(this).is(":checked")) {
+                $(".cost-box").show();
+            } else {
+                $(".cost-box").hide();
+            }
+        });
     </script>
 }
